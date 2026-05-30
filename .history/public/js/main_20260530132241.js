@@ -59,6 +59,7 @@ document.getElementById('btn-validar-admin').addEventListener('click', () => {
     document.getElementById('input-admin-user').value = '';
     document.getElementById('input-admin-pass').value = '';
   } else {
+    // Si le pifia, le tiramos un cartelito
     alert('Usuario o contraseña incorrectos. ¡Acceso denegado!');
   }
 });

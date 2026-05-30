@@ -36,37 +36,38 @@
 
   <section id="pantalla-admin" class="oculta">
     <h2>Panel de Administración</h2>
-    <p>Gestión de inventario de Patitas.</p>
-    <hr>
+  <p>Gestión de inventario de Patitas.</p>
+  
+  <hr>
 
-    <div id="admin-formulario" style="margin-bottom: 20px;">
-      <h3>Agregar Nuevo Producto</h3>
-      <input type="text" id="admin-input-nombre" placeholder="Nombre del producto">
-      <input type="number" id="admin-input-precio" placeholder="Precio ($)">
-      <select id="admin-select-tipo">
-        <option value="perro">Perro</option>
-        <option value="gato">Gato</option>
-        <option value="ambos">Ambos</option>
-      </select>
-      <button id="btn-agregar-producto">Guardar Producto</button>
-    </div>
+  <div id="admin-formulario" style="margin-bottom: 20px;">
+    <h3>Agregar Nuevo Producto</h3>
+    <input type="text" id="admin-input-nombre" placeholder="Nombre del producto">
+    <input type="number" id="admin-input-precio" placeholder="Precio ($)">
+    <select id="admin-select-tipo">
+      <option value="perro">Perro</option>
+      <option value="gato">Gato</option>
+      <option value="ambos">Ambos</option>
+    </select>
+    <button id="btn-agregar-producto">Guardar Producto</button>
+  </div>
 
-    <div>
-      <h3>Productos en Sistema</h3>
-      <table border="1" style="width: 100%; text-align: left; border-collapse: collapse;">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Precio</th>
-            <th>Tipo</th>
-            <th>Acción</th>
-          </tr>
-        </thead>
-        <tbody id="tbody-admin-productos">
+  <div>
+    <h3>Productos en Sistema</h3>
+    <table border="1" style="width: 100%; text-align: left; border-collapse: collapse;">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Tipo</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody id="tbody-admin-productos">
         </tbody>
-      </table>
-    </div>
+    </table>
+  </div>
 
     <button id="btn-volver-admin">Volver al Inicio</button>
   </section>
