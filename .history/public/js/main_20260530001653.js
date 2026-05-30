@@ -3,23 +3,14 @@ import { renderizarProductos, productosDb } from './pantallaProductos.js';
 import {  } from './pantallaCarrito.js';
 import {  } from './pantallaTicket.js';
 
-// --- ESTADO GLOBAL ---
-let estado = {
-  nombreCliente: '',
-  carrito: [], // Array de objetos: { id, nombre, variante, precio, cantidad }
-  productos: productosDb // Aquí cargarás tus datos (mock o API)
-};
 
 
 // 1. Capturamos todas las secciones
 const secciones = {
-  bienvenida: document.getElementById('pantalla-inicio'),
-  catalogo: document.getElementById('pantalla-productos'),
-  carrito: document.getElementById('pantalla-carrito'),
-  ticket: document.getElementById('pantalla-ticket')
+  bienvenida: document.getElementById('pantalla-bienvenida'),
+  catalogo: document.getElementById('pantalla-catalogo'),
+  carrito: document.getElementById('pantalla-carrito')
 };
-
-
 
 // 2. Función maestra para cambiar pantallas
 export function mostrarPantalla(pantallaDeseada) {
@@ -37,24 +28,19 @@ document.getElementById('btn-entrar').addEventListener('click', () => {
   // Acá podrías capturar el nombre del input y guardarlo en tu estado global antes de cambiar
   mostrarPantalla('catalogo'); 
 });
-/*
+
 document.getElementById('btn-ver-carrito').addEventListener('click', () => {
   mostrarPantalla('carrito');
 });
 
 document.getElementById('btn-seguir-comprando').addEventListener('click', () => {
   mostrarPantalla('catalogo');
-});*/
-
-
-// Arrancamos mostrando solo el inicio
-mostrarPantalla('bienvenida');
+});
 
 
 
 
 //--- PANTALLA DE INICIO ---
-
 //iniciarCompra();
 
 
@@ -97,7 +83,7 @@ renderizarProductos(estado.productos);
 
 
 
-/*
+
 
 // --- 5. REINICIO ---
 function reiniciarSistema() {
@@ -118,4 +104,4 @@ function mostrarPantalla(idPantalla) {
 
 function volverAProductos() {
   mostrarPantalla('pantalla-productos');
-}   */
+}   

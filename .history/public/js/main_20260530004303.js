@@ -15,10 +15,8 @@ let estado = {
 const secciones = {
   bienvenida: document.getElementById('pantalla-inicio'),
   catalogo: document.getElementById('pantalla-productos'),
-  carrito: document.getElementById('pantalla-carrito'),
-  ticket: document.getElementById('pantalla-ticket')
+  carrito: document.getElementById('pantalla-carrito')
 };
-
 
 
 // 2. Función maestra para cambiar pantallas
@@ -32,6 +30,9 @@ export function mostrarPantalla(pantallaDeseada) {
   secciones[pantallaDeseada].classList.remove('oculta');
 }
 
+// Arrancamos mostrando solo el inicio
+mostrarPantalla('bienvenida');
+
 // 3. Asignamos los eventos a los botones de navegación
 document.getElementById('btn-entrar').addEventListener('click', () => {
   // Acá podrías capturar el nombre del input y guardarlo en tu estado global antes de cambiar
@@ -44,11 +45,8 @@ document.getElementById('btn-ver-carrito').addEventListener('click', () => {
 
 document.getElementById('btn-seguir-comprando').addEventListener('click', () => {
   mostrarPantalla('catalogo');
-});*/
+}); */
 
-
-// Arrancamos mostrando solo el inicio
-mostrarPantalla('bienvenida');
 
 
 

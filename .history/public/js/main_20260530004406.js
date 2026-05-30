@@ -20,7 +20,6 @@ const secciones = {
 };
 
 
-
 // 2. Función maestra para cambiar pantallas
 export function mostrarPantalla(pantallaDeseada) {
   // Primero, le ponemos la clase "oculta" a TODAS
@@ -31,6 +30,7 @@ export function mostrarPantalla(pantallaDeseada) {
   // Segundo, se la sacamos SOLO a la que queremos ver
   secciones[pantallaDeseada].classList.remove('oculta');
 }
+
 
 // 3. Asignamos los eventos a los botones de navegación
 document.getElementById('btn-entrar').addEventListener('click', () => {
@@ -44,11 +44,8 @@ document.getElementById('btn-ver-carrito').addEventListener('click', () => {
 
 document.getElementById('btn-seguir-comprando').addEventListener('click', () => {
   mostrarPantalla('catalogo');
-});*/
+}); */
 
-
-// Arrancamos mostrando solo el inicio
-mostrarPantalla('bienvenida');
 
 
 

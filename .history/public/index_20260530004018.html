@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Patitas</title>
-    <link rel="stylesheet" href="./css/estilos.css">
   </head>
   <body>
     <section id="pantalla-inicio">
@@ -32,15 +31,15 @@
       <h2>Tu Carrito</h2>
       <div id="lista-carrito-detalle"></div>
       <h3>Total: $<span id="total-carrito">0</span></h3>
-      <button id="btn-finalizar-compra">Finalizar Compra</button>
-      <button id="btn-seguir-comprando">Seguir Comprando</button>
+      <button onclick="finalizarCompra()">Finalizar Compra</button>
+      <button onclick="volverAProductos()">Seguir Comprando</button>
     </section>
 
-    <section id="pantalla-ticket">
+    <section id="pantalla_ticket">
       <div id="ticket-contenido">
         <!-- Se llena dinámicamente -->
       </div>
-      <button id="btn-salir-nuevo-cliente">Salir / Nuevo Cliente</button>
+      <button onclick="reiniciarSistema()">Salir / Nuevo Cliente</button>
     </section>
 
     <script type="module" src="./js/main.js"></script>

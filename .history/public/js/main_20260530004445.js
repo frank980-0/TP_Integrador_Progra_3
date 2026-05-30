@@ -19,7 +19,8 @@ const secciones = {
   ticket: document.getElementById('pantalla-ticket')
 };
 
-
+// Arrancamos mostrando solo el inicio
+mostrarPantalla('bienvenida');
 
 // 2. Función maestra para cambiar pantallas
 export function mostrarPantalla(pantallaDeseada) {
@@ -44,11 +45,8 @@ document.getElementById('btn-ver-carrito').addEventListener('click', () => {
 
 document.getElementById('btn-seguir-comprando').addEventListener('click', () => {
   mostrarPantalla('catalogo');
-});*/
+}); */
 
-
-// Arrancamos mostrando solo el inicio
-mostrarPantalla('bienvenida');
 
 
 

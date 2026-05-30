@@ -44,7 +44,7 @@ document.getElementById('btn-ver-carrito').addEventListener('click', () => {
 
 document.getElementById('btn-seguir-comprando').addEventListener('click', () => {
   mostrarPantalla('catalogo');
-});*/
+});
 
 
 // Arrancamos mostrando solo el inicio

@@ -20,7 +20,6 @@ const secciones = {
 };
 
 
-
 // 2. Función maestra para cambiar pantallas
 export function mostrarPantalla(pantallaDeseada) {
   // Primero, le ponemos la clase "oculta" a TODAS
@@ -44,11 +43,8 @@ document.getElementById('btn-ver-carrito').addEventListener('click', () => {
 
 document.getElementById('btn-seguir-comprando').addEventListener('click', () => {
   mostrarPantalla('catalogo');
-});*/
+}); */
 
-
-// Arrancamos mostrando solo el inicio
-mostrarPantalla('bienvenida');
 
 
 

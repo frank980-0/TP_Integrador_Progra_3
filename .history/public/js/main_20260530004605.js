@@ -19,7 +19,8 @@ const secciones = {
   ticket: document.getElementById('pantalla-ticket')
 };
 
-
+// Arrancamos mostrando solo el inicio
+mostrarPantalla('bienvenida');
 
 // 2. Función maestra para cambiar pantallas
 export function mostrarPantalla(pantallaDeseada) {
@@ -37,18 +38,15 @@ document.getElementById('btn-entrar').addEventListener('click', () => {
   // Acá podrías capturar el nombre del input y guardarlo en tu estado global antes de cambiar
   mostrarPantalla('catalogo'); 
 });
-/*
+
 document.getElementById('btn-ver-carrito').addEventListener('click', () => {
   mostrarPantalla('carrito');
 });
 
 document.getElementById('btn-seguir-comprando').addEventListener('click', () => {
   mostrarPantalla('catalogo');
-});*/
+}); 
 
-
-// Arrancamos mostrando solo el inicio
-mostrarPantalla('bienvenida');
 
 
 
