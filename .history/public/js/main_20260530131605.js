@@ -46,30 +46,7 @@ document.getElementById('btn-admin').addEventListener('click', () => {
 
 // Botón para entrar al panel de Administrador
 document.getElementById('btn-validar-admin').addEventListener('click', () => {
-  // Capturamos lo que el usuario escribió
-  const usuario = document.getElementById('input-admin-user').value;
-  const pass = document.getElementById('input-admin-pass').value;
-
-  // Simulamos la base de datos (acá poné la contraseña que quieras)
-  if (usuario === 'admin' && pass === '123456') {
-    // Si es correcto, lo dejamos pasar al panel
-    mostrarPantalla('admin');
-    
-    // Limpiamos los inputs por si cierra sesión y vuelve a entrar
-    document.getElementById('input-admin-user').value = '';
-    document.getElementById('input-admin-pass').value = '';
-  } else {
-    // Si le pifia, le tiramos un cartelito
-    alert('Usuario o contraseña incorrectos. ¡Acceso denegado!');
-  }
-});
-
-// Botón para arrepentirse y volver al inicio
-document.getElementById('btn-cancelar-admin').addEventListener('click', () => {
-  // Limpiamos los inputs antes de irnos
-  document.getElementById('input-admin-user').value = '';
-  document.getElementById('input-admin-pass').value = '';
-  mostrarPantalla('bienvenida');
+  mostrarPantalla('admin');
 });
 
 

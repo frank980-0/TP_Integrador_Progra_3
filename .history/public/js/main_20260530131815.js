@@ -45,6 +45,7 @@ document.getElementById('btn-admin').addEventListener('click', () => {
 });
 
 // Botón para entrar al panel de Administrador
+// El botón que hace la validación real
 document.getElementById('btn-validar-admin').addEventListener('click', () => {
   // Capturamos lo que el usuario escribió
   const usuario = document.getElementById('input-admin-user').value;

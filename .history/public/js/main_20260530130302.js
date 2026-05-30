@@ -18,7 +18,7 @@ const secciones = {
   carrito: document.getElementById('pantalla-carrito'),
   ticket: document.getElementById('pantalla-ticket'),
   admin: document.getElementById('pantalla-admin'),
-  loginAdmin: document.getElementById('pantalla-login-admin')
+  loginAdmin: document.getElementById('login-admin')
 };
 
 
@@ -34,51 +34,16 @@ export function mostrarPantalla(pantallaDeseada) {
   secciones[pantallaDeseada].classList.remove('oculta');
 }
 
-// Botón para entrar al catálogo de productos
+// 3. Asignamos los eventos a los botones de navegación
 document.getElementById('btn-entrar').addEventListener('click', () => {
+  // Acá podrías capturar el nombre del input y guardarlo en tu estado global antes de cambiar
   mostrarPantalla('catalogo'); 
 });
 
-// Botón para entrar al login de Administrador
-document.getElementById('btn-admin').addEventListener('click', () => {
-  mostrarPantalla('loginAdmin');
-});
-
 // Botón para entrar al panel de Administrador
-document.getElementById('btn-validar-admin').addEventListener('click', () => {
-  // Capturamos lo que el usuario escribió
-  const usuario = document.getElementById('input-admin-user').value;
-  const pass = document.getElementById('input-admin-pass').value;
-
-  // Simulamos la base de datos (acá poné la contraseña que quieras)
-  if (usuario === 'admin' && pass === '123456') {
-    // Si es correcto, lo dejamos pasar al panel
-    mostrarPantalla('admin');
-    
-    // Limpiamos los inputs por si cierra sesión y vuelve a entrar
-    document.getElementById('input-admin-user').value = '';
-    document.getElementById('input-admin-pass').value = '';
-  } else {
-    // Si le pifia, le tiramos un cartelito
-    alert('Usuario o contraseña incorrectos. ¡Acceso denegado!');
-  }
+document.getElementById('btn-admin').addEventListener('click', () => {
+  mostrarPantalla('login-admin');
 });
-
-// Botón para arrepentirse y volver al inicio
-document.getElementById('btn-cancelar-admin').addEventListener('click', () => {
-  // Limpiamos los inputs antes de irnos
-  document.getElementById('input-admin-user').value = '';
-  document.getElementById('input-admin-pass').value = '';
-  mostrarPantalla('bienvenida');
-});
-
-
-
-
-
-
-
-
 
 /*
 document.getElementById('btn-ver-carrito').addEventListener('click', () => {
