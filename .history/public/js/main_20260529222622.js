@@ -1,7 +1,7 @@
 import { cargarProductos } from './pantallaCarrito.js';
 import { iniciarCompra } from './pantallaInicio.js';
-import { filtrarCategoria, renderizarProductos } from './pantallaProductos.js';
-import { generarTicket } from './pantallaTicket.js';
+import {} from './pantallaProductos.js';
+import {} from './pantallaTicket.js';
 
 
 // --- ESTADO GLOBAL ---
@@ -12,21 +12,14 @@ let estado = {
 };
 
 
-//--- PANTALLA DE INICIO ---
-iniciarCompra();
+// --- 1. INICIALIZACIÓN ---
+document.addEventListener('DOMContentLoaded', () => {
+  cargarProductos(estado); // Cargar productos al estado
+  actualizarContador(); // Mostrar contador inicial (0)
+  mostrarPantalla('pantalla-bienvenida'); // Mostrar bienvenida
+});
+  iniciarCompra(); // llamar a la pantalla de inicio
 
-
-// --- PANTALLA PRODUCTOS ---
-filtrarCategoria(categoria);
-renderizarProductos(lista);
-
-
-// --- PANTALLA CARRITO ---
-cargarProductos();
-
-
-// --- PANTALLA TICKET ---
-generarTicket();
 
 
 

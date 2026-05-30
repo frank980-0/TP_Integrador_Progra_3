@@ -13,7 +13,7 @@ let estado = {
 
 
 //--- PANTALLA DE INICIO ---
-iniciarCompra();
+  iniciarCompra(); 
 
 
 // --- PANTALLA PRODUCTOS ---

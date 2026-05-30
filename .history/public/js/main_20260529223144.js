@@ -1,6 +1,6 @@
 import { cargarProductos } from './pantallaCarrito.js';
 import { iniciarCompra } from './pantallaInicio.js';
-import { filtrarCategoria, renderizarProductos } from './pantallaProductos.js';
+import { filtrarCategoria, renderizarProductos f} from './pantallaProductos.js';
 import { generarTicket } from './pantallaTicket.js';
 
 
@@ -13,7 +13,7 @@ let estado = {
 
 
 //--- PANTALLA DE INICIO ---
-iniciarCompra();
+  iniciarCompra(); 
 
 
 // --- PANTALLA PRODUCTOS ---

@@ -1,7 +1,7 @@
 import { cargarProductos } from './pantallaCarrito.js';
 import { iniciarCompra } from './pantallaInicio.js';
-import { filtrarCategoria, renderizarProductos } from './pantallaProductos.js';
-import { generarTicket } from './pantallaTicket.js';
+import {} from './pantallaProductos.js';
+import {} from './pantallaTicket.js';
 
 
 // --- ESTADO GLOBAL ---
@@ -13,23 +13,11 @@ let estado = {
 
 
 //--- PANTALLA DE INICIO ---
-iniciarCompra();
-
-
-// --- PANTALLA PRODUCTOS ---
-filtrarCategoria(categoria);
-renderizarProductos(lista);
-
-
-// --- PANTALLA CARRITO ---
-cargarProductos();
-
-
-// --- PANTALLA TICKET ---
-generarTicket();
+  iniciarCompra(); 
 
 
 
+// ---  PRODUCTOS ---
 
 
 

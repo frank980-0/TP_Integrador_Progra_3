@@ -1,7 +1,7 @@
 import { cargarProductos } from './pantallaCarrito.js';
 import { iniciarCompra } from './pantallaInicio.js';
-import { filtrarCategoria, renderizarProductos } from './pantallaProductos.js';
-import { generarTicket } from './pantallaTicket.js';
+import {} from './pantallaProductos.js';
+import {} from './pantallaTicket.js';
 
 
 // --- ESTADO GLOBAL ---
@@ -11,32 +11,30 @@ let estado = {
   productos: [] // Aquí cargarás tus datos (mock o API)
 };
 
+  iniciarCompra(); // llamar a la pantalla de inicio
 
-//--- PANTALLA DE INICIO ---
-iniciarCompra();
+function generarTicket() {
+  const fecha = new Date().toLocaleString();
+  const total = estado.carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+  
+  let htmlItems = estado.carrito.map(item => 
+    `<li>${item.cantidad} x ${item.nombre} (${item.variante}) - $${item.precio * item.cantidad}</li>`
+  ).join('');
 
-
-// --- PANTALLA PRODUCTOS ---
-filtrarCategoria(categoria);
-renderizarProductos(lista);
-
-
-// --- PANTALLA CARRITO ---
-cargarProductos();
-
-
-// --- PANTALLA TICKET ---
-generarTicket();
-
-
-
-
-
-
-
-
-
-
+  const contenido = `
+    <h2>Ticket de Compra</h2>
+    <p><strong>Cliente:</strong> ${estado.nombreCliente}</p>
+    <p><strong>Empresa:</strong> Pet Shop System</p>
+    <p><strong>Fecha:</strong> ${fecha}</p>
+    <hr>
+    <ul>${htmlItems}</ul>
+    <hr>
+    <h3>Total Pagado: $${total}</h3>
+    <p>¡Gracias por su compra!</p>
+  `;
+  
+  document.getElementById('ticket-contenido').innerHTML = contenido;
+}
 
 // --- 5. REINICIO ---
 function reiniciarSistema() {
