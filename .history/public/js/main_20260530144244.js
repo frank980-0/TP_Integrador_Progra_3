@@ -19,6 +19,7 @@ const secciones = {
   ticket: document.getElementById('pantalla-ticket'),
   admin: document.getElementById('pantalla-admin'),
   loginAdmin: document.getElementById('pantalla-login-admin'),
+  btnvolver: document.getElementById('btn-volver-admin')
 };
 
 // 2. Función maestra para cambiar pantallas

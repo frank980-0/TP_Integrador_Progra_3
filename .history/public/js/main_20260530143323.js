@@ -19,7 +19,11 @@ const secciones = {
   ticket: document.getElementById('pantalla-ticket'),
   admin: document.getElementById('pantalla-admin'),
   loginAdmin: document.getElementById('pantalla-login-admin'),
+  btnvolver: document.getElementById('btn-volver-admin')
 };
+
+  
+
 
 // 2. Función maestra para cambiar pantallas
 export function mostrarPantalla(pantallaDeseada) {
@@ -70,10 +74,9 @@ document.getElementById('btn-cancelar-admin').addEventListener('click', () => {
 });
 
 
-// Botón para salir del panel y volver a la bienvenida
 document.getElementById('btn-volver-admin').addEventListener('click', () => {
-  mostrarPantalla('bienvenida');
-});
+  mostrarPantalla('catalogo');
+}
 
 
 

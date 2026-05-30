@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patitas</title>
+  <link rel="stylesheet" href="./css/estilos.css">
+</head>
+
+<body>
+  <section id="pantalla-inicio">
+    <h1>Bienvenidos a Patitas</h1>
+    <p>Encontra lo que tu mascota necesita</p>
+    <input type="text" id="input-nombre" placeholder="Nombre" required />
+    <div class="botones_inicio">
+      <button id="btn-entrar">Entrar</button>
+      <button id="btn-admin">Administrador</button>
+    </div>
+  </section>
+
+  <section id="pantalla-login-admin" class="oculta">
+    <h2>Ingreso de Personal</h2>
+    <p>Por favor, valide su identidad para gestionar la tienda.</p>
+
+    <div style="margin-bottom: 10px;">
+      <input type="text" id="input-admin-user" placeholder="Usuario">
+    </div>
+    <div style="margin-bottom: 10px;">
+      <input type="password" id="input-admin-pass" placeholder="Contraseña">
+    </div>
+
+    <button id="btn-validar-admin">Ingresar</button>
+    <button id="btn-cancelar-admin">Cancelar</button>
+  </section>
+
+  <section id="pantalla-admin" class="oculta">
+    <h2>Panel de Administración</h2>
+    <p>Gestión de inventario de Patitas.</p>
+    <hr>
+
+    <div id="admin-formulario" style="margin-bottom: 20px;">
+      <h3>Agregar Nuevo Producto</h3>
+      <input type="text" id="admin-input-nombre" placeholder="Nombre del producto">
+      <input type="number" id="admin-input-precio" placeholder="Precio ($)">
+      <select id="admin-select-tipo">
+        <option value="perro">Perro</option>
+        <option value="gato">Gato</option>
+        <option value="ambos">Ambos</option>
+      </select>
+      <button id="btn-agregar-producto">Guardar Producto</button>
+    </div>
+
+    <div>
+      <h3>Productos en Sistema</h3>
+      <table border="1" style="width: 100%; text-align: left; border-collapse: collapse;">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Tipo</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody id="tbody-admin-productos">
+        </tbody>
+      </table>
+    </div>
+
+    <button id="btn-volver-admin">Volver al Inicio</button>
+  </section>
+
+  <section id="pantalla-productos" class="ocultar">
+    <h2>Catalogo</h2>
+    <div>Carrito</div>
+    <nav>
+      <button id="btn-filtro-todos">Todos</button>
+      <button id="btn-filtro-perros">Perros</button>
+      <button id="btn-filtro-gatos">Gatos</button>
+    </nav>
+    <div id="lista_productos"></div>
+  </section>
+
+  <section id="pantalla-carrito" class="oculta">
+    <h2>Tu Carrito</h2>
+    <div id="lista-carrito-detalle"></div>
+    <h3>Total: $<span id="total-carrito">0</span></h3>
+    <button id="btn-finalizar-compra">Finalizar Compra</button>
+    <button id="btn-seguir-comprando">Seguir Comprando</button>
+  </section>
+
+  <section id="pantalla-ticket">
+    <div id="ticket-contenido">
+      <!-- Se llena dinámicamente -->
+    </div>
+    <button id="btn-salir-nuevo-cliente">Salir / Nuevo Cliente</button>
+  </section>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+
+</html>
