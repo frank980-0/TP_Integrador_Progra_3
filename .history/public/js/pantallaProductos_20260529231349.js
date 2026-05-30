@@ -1,8 +1,8 @@
 // 1. IMPORTACIONES (Si tenés tus productos en otro archivo)
 // import { productosDb } from './pantallaProductos.js';
-
+m
 // Si no los tenés separados aún, usamos esta base de prueba:
-export const productosDb = [
+const productosDb = [
   { id: 1, nombre: 'Collar ajustable talle M', tipo: 'perro', precio: 5000 },
   { id: 2, nombre: 'Hueso de goma resistente', tipo: 'perro', precio: 2500 },
   { id: 3, nombre: 'Ratón de tela con sonido', tipo: 'gato', precio: 1500 },
@@ -17,7 +17,7 @@ const btnPerros = document.getElementById('btn-filtro-perros');
 const btnGatos = document.getElementById('btn-filtro-gatos');
 
 // 3. FUNCIÓN PARA DIBUJAR LOS PRODUCTOS
-export function renderizarProductos(arrayProductos) {
+function renderizarProductos(arrayProductos) {
   // Primero vaciamos el contenedor
   contenedorProductos.innerHTML = '';
 

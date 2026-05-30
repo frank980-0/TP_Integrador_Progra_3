@@ -17,7 +17,7 @@ const btnPerros = document.getElementById('btn-filtro-perros');
 const btnGatos = document.getElementById('btn-filtro-gatos');
 
 // 3. FUNCIÓN PARA DIBUJAR LOS PRODUCTOS
-export function renderizarProductos(arrayProductos) {
+function renderizarProductos(arrayProductos) {
   // Primero vaciamos el contenedor
   contenedorProductos.innerHTML = '';
 

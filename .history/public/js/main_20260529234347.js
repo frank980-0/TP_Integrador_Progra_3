@@ -1,5 +1,5 @@
 import {  } from './pantallaInicio.js';
-import { renderizarProductos, productosDb } from './pantallaProductos.js';
+import { renderizarProductos, productosDb } from './js/pantallaProductos.js';
 import {  } from './pantallaCarrito.js';
 import {  } from './pantallaTicket.js';
 

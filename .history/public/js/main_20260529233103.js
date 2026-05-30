@@ -1,33 +1,33 @@
-import {  } from './pantallaInicio.js';
-import { renderizarProductos, productosDb } from './pantallaProductos.js';
-import {  } from './pantallaCarrito.js';
-import {  } from './pantallaTicket.js';
+import { cargarProductos } from './pantallaCarrito.js';
+import { iniciarCompra } from './pantallaInicio.js';
+import { filtrarCategoria, renderizarProductos,  } from './pantallaProductos.js';
+import { generarTicket } from './pantallaTicket.js';
 
 
 // --- ESTADO GLOBAL ---
 let estado = {
   nombreCliente: '',
   carrito: [], // Array de objetos: { id, nombre, variante, precio, cantidad }
-  productos: productosDb // Aquí cargarás tus datos (mock o API)
+  productos: [] // Aquí cargarás tus datos (mock o API)
 };
 
 
 //--- PANTALLA DE INICIO ---
-//iniciarCompra();
+iniciarCompra();
 
 
 // --- PANTALLA PRODUCTOS ---
 
-renderizarProductos(estado.productos);
+renderizarProductos();
 
 
 
 // --- PANTALLA CARRITO ---
-//cargarProductos();
+cargarProductos();
 
 
 // --- PANTALLA TICKET ---
-//generarTicket();
+generarTicket();
 
 
 
