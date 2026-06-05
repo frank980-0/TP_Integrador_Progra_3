@@ -4,44 +4,48 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Patitas</title>
-    <link rel="stylesheet" href="/public/css/estilos.css" />
+    <link rel="stylesheet" href="./css/estilos.css" />
   </head>
   <body>
-    <section id="pantalla_inicio">
-      <h1>Bienvenidos a Patitas</h1>
-      <p>Encontra lo que tu mascota necesita</p>
-      <input type="text" id="input_nombre" placeholder="Nombre" required />
-      <div class="botones_inicio">
-        <button onclick="iniciarCompra()">Entrar</button>
-        <button onclick="iniciarAdmin()">Administrador</button>
+    <section id="pantalla-inicio">
+      <div class="carta-inicio">
+        <h1>Bienvenidos a Patitas</h1>
+        <p>Encontra lo que tu mascota necesita</p>
+        <input type="text" id="input-nombre" placeholder="Nombre" required />
+        <div class="botones-inicio">
+          <button id="btn-entrar">Comenzar</button>
+          <button id="btn-admin">Administrador</button>
+        </div>
       </div>
     </section>
 
-    <section id="pantalla_productos" class="ocultar">
+    <!-- pantalla de la listas de productos -->
+    <section id="pantalla-productos" class="oculta">
       <h2>Catalogo</h2>
       <div>Carrito</div>
       <nav>
-        <button onclick="filtrarTodos()">Todos</button>
-        <button onclick="filtrarPerros()">Perros</button>
-        <button onclick="filtrarGatos()">Gatos</button>
+        <button id="btn-filtro-todos">Todos</button>
+        <button id="btn-filtro-perros">Perros</button>
+        <button id="btn-filtro-gatos">Gatos</button>
       </nav>
-      <div id="lista_productos"></div>
+      <div id="lista-productos"></div>
     </section>
 
+    <!-- pantalla del carrito de compras -->
     <section id="pantalla-carrito" class="oculta">
       <h2>Tu Carrito</h2>
       <div id="lista-carrito-detalle"></div>
       <h3>Total: $<span id="total-carrito">0</span></h3>
-      <button onclick="finalizarCompra()">Finalizar Compra</button>
-      <button onclick="volverAProductos()">Seguir Comprando</button>
+      <button id="btn-finalizar-compra">Finalizar Compra</button>
+      <button id="btn-seguir-comprando">Seguir Comprando</button>
     </section>
 
-    <section id="pantalla_ticket">
+    <section id="pantalla-ticket">
       <div id="ticket-contenido">
         <!-- Se llena dinámicamente -->
       </div>
-      <button onclick="reiniciarSistema()">Salir / Nuevo Cliente</button>
     </section>
-    <script src="script.js"></script>
+
+    <script type="module" src="./js/main.js" defer></script>
   </body>
 </html>

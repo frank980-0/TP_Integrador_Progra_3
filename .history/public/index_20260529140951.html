@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patitas</title>
+  </head>
+  <body>
+    <section id="pantalla_inicio">
+      <h1>Bienvenidos a Patitas</h1>
+      <p>Encontra lo que tu mascota necesita</p>
+      <input type="text" id="input-nombre" placeholder="Nombre" required />
+      <div class="botones_inicio">
+        <button onclick="iniciarCompra()">Entrar</button>
+        <button onclick="iniciarAdmin()">Administrador</button>
+      </div>
+    </section>
+
+    <section id="pantalla_productos" class="ocultar">
+      <h2>Catalogo</h2>
+      <div>Carrito</div>
+      <nav>
+        <button onclick="filtrarTodos()">Todos</button>
+        <button onclick="filtrarPerros()">Perros</button>
+        <button onclick="filtrarGatos()">Gatos</button>
+      </nav>
+      <div id="lista_productos"></div>
+    </section>
+
+    <section id="pantalla-carrito" class="oculta">
+      <h2>Tu Carrito</h2>
+      <div id="lista-carrito-detalle"></div>
+      <h3>Total: $<span id="total-carrito">0</span></h3>
+      <button onclick="finalizarCompra()">Finalizar Compra</button>
+      <button onclick="volverAProductos()">Seguir Comprando</button>
+    </section>
+
+    <section id="pantalla_ticket">
+      <div id="ticket-contenido">
+        <!-- Se llena dinámicamente -->
+      </div>
+      <button onclick="reiniciarSistema()">Salir / Nuevo Cliente</button>
+    </section>
+
+    <script src="./js/main.js"></script>
+  </body>
+</html>
