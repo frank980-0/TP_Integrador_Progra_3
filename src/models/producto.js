@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 // Importamos la conexión que creamos hace un ratito
-const sequelize = require('../config/database'); 
+const sequelize = require('../../config/database'); 
 
 const Producto = sequelize.define('Producto', {
   // Nota: Sequelize crea la columna 'id' automáticamente, no hace falta escribirla.

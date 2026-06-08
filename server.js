@@ -1,7 +1,7 @@
 const sequelize = require('./config/database');
-const Producto = require('./models/producto'); // Importamos el modelo recién creado
+const Producto = require('./src/models/producto'); // Importamos el modelo recién creado
 
-const rutasApi = require('./src/routes/apis');
+const rutasApi = require('./src/api/producto');
 app.use('/api', rutasApi); // Todas tus rutas van a empezar con /api/...
 
 // Sincronizamos la base de datos

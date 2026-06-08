@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Producto = require('../../models/producto'); // Traemos tu modelo
+const Producto = require('../models/producto'); // Traemos tu modelo
 
 // 1. ENDPOINT PARA LISTAR (Para el catálogo del cliente y el dashboard)
 router.get('/productos', async (req, res) => {
