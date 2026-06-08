@@ -1,4 +1,4 @@
-import { baseDeDatosProductos } from "../../config/database.js";
+import { baseDeDatosProductos } from "./datosPrueba.js";
 
 export let estado = {
   nombreCliente: "",
