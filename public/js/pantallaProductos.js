@@ -9,8 +9,6 @@ export function renderizarProductos(lista) {
   lista.forEach((prod) => {
     const card = document.createElement("div");
 
-    // ✅ CORRECCIÓN: Acceder directamente a prod.variantes (que es un string)
-    // Sin .map() ni bucles, ya que es un solo valor.
     card.innerHTML = `
       <h3>${prod.nombre}</h3>
       <p>Variante: ${prod.variantes}</p>
@@ -32,5 +30,3 @@ export function filtrarCategoria(categoria) {
     renderizarProductos(filtrados);
   }
 }
-
-//    <img src="${prod.imagen}" width="100">
