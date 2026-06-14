@@ -7,10 +7,11 @@ const Admin = require('../database/models/admin');
 // --------------------------------------------------------
 // 1. ENDPOINT PARA CREAR UN ADMIN (Cumple consigna de encriptación)
 // --------------------------------------------------------
+// recibe la petición del formulario de registro del administrador, encripta la contraseña y la guarda en la base de datos
 router.post('/registro', async (req, res) => {
   try {
     const { correo, password } = req.body;
-
+            
     // Validamos que lleguen los datos
     if (!correo || !password) {
       return res.status(400).json({ error: 'Faltan datos obligatorios' });

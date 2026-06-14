@@ -12,3 +12,8 @@ app.get('/src/api/producto', async (req, res) => {
     res.status(500).json({ mensaje: 'Error al buscar los productos' });
   }
 });
+
+
+
+const rutasAdmin = require('./src/api/admin');
+app.use('/api/admin', rutasAdmin);
