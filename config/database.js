@@ -1,9 +1,49 @@
-const { Sequelize } = require('sequelize');
-const path = require('path');
-// Inicializamos Sequelize apuntando a SQLite
+const { Sequelize } = require("sequelize");
+const path = require("path");
+
+// Configuración específica para SQLite
 const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  storage: path.join(__dirname, '../data/database.sqlite') // Este es el nombre del archivo que se va a crear en tu proyecto
+  dialect: "better-sqlite3",
+  storage: path.join(__dirname, "..", "data", "petshop.db"), // crea el archivo de la base de datos
+  logging: false,
 });
 
-module.exports = sequelize;
+// Solo verificamos la conexión, NO sincronizamos aquí
+const conectarDB = async () => {
+  try {
+    await sequelize.authenticate();
+    console.log("Conexión a SQLite establecida correctamente.");
+  } catch (error) {
+    console.error("Error al conectar con SQLite:", error);
+  }
+};
+
+module.exports = { sequelize, conectarDB };
+
+// const { Sequelize } = require("sequelize");
+
+// // Configuración de la conexión
+
+// const sequelize = new Sequelize("base_de_datos", "usuario", "contraseña", {
+//   host: "localhost",
+//   dialect: "sqlite",
+//   logging: false,
+// });
+
+// // Prueba de conexión y sincronización de modelos
+// const conectarDB = async () => {
+//   try {
+//     await sequelize.authenticate();
+//     console.log("Conexión a la base de datos establecida correctamente.");
+
+//     await sequelize.sync({ alter: true });
+//     console.log(" Modelos sincronizados con la base de datos.");
+//   } catch (error) {
+//     console.error(" Unable to connect to the database:", error);
+//   }
+// };
+
+// // Ejecutar la conexión
+// conectarDB();
+
+// module.exports = sequelize;
