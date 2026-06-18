@@ -1,101 +1,113 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Patitas</title>
-    <link rel="stylesheet" href="./css/estilos.css" />
-  </head>
-  <body>
-    <section id="pantalla-inicio">
-      <div class="carta-inicio">
-        <h1>Bienvenidos a Patitas</h1>
-        <p>Encontra lo que tu mascota necesita</p>
-        <input type="text" id="input-nombre" placeholder="Nombre" required />
-        <div class="botones-inicio">
-          <button id="btn-entrar">Comenzar</button>
-          <button id="btn-admin">Administrador</button>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patitas</title>
+  <link rel="stylesheet" href="./css/estilos.css" />
+</head>
+
+<body>
+  <section id="pantalla-inicio">
+    <div class="carta-inicio">
+      <h1>Bienvenidos a Patitas</h1>
+      <p>Encontra lo que tu mascota necesita</p>
+      <input type="text" id="input-nombre" placeholder="Nombre" required />
+      <div class="botones-inicio">
+        <button id="btn-entrar">Comenzar</button>
+        <button id="btn-administrador" class="btn-naranja">Administrador</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- pantalla de la listas de productos -->
+  <section id="pantalla-productos" class="oculta">
+    <h2>Catalogo</h2>
+    <div>Carrito</div>
+    <nav>
+      <button id="btn-filtro-todos">Todos</button>
+      <button id="btn-filtro-perros">Perros</button>
+      <button id="btn-filtro-gatos">Gatos</button>
+    </nav>
+    <div id="lista-productos"></div>
+  </section>
+
+  <!-- pantalla del carrito de compras -->
+  <section id="pantalla-carrito" class="oculta">
+    <h2>Tu Carrito</h2>
+    <div id="lista-carrito-detalle"></div>
+    <h3>Total: $<span id="total-carrito">0</span></h3>
+    <button id="btn-finalizar-compra">Finalizar Compra</button>
+    <button id="btn-seguir-comprando">Seguir Comprando</button>
+  </section>
+
+  <section id="pantalla-ticket" class="oculta">
+    <div id="ticket-contenido">
+      <!-- Se llena dinámicamente -->
+    </div>
+  </section>
+
+  <section id="pantalla-login-admin" class="oculta">
+    <div class="admin-container">
+      <h2>Acceso Administrador</h2>
+      <p>Ingresá tus credenciales para gestionar el PetShop</p>
+
+      <div class="form-grupo">
+        <label for="admin-correo">Correo electrónico:</label>
+        <input type="email" id="admin-correo" placeholder="Ej: admin@patitas.com" required>
+      </div>
+
+      <div class="form-grupo">
+        <label for="admin-password">Contraseña:</label>
+        <input type="password" id="admin-password" placeholder="Tu contraseña" required>
+      </div>
+
+      <div class="botones-container" style="margin-top: 15px;">
+        <button id="btn-login-admin" class="btn-naranja">Ingresar</button>
+        <button id="btn-crear-admin" class="btn-naranja">Crear cuenta nueva</button>
+      </div>
+      <br>
+      <button id="btn-volver-inicio">Volver al inicio</button>
+    </div>
+  </section>
+
+  <section id="seccion-admin" class="oculta">
+    <div class="admin-container">
+      <h2>Panel de Administración - Cargar Producto</h2>
+
+      <form id="form-producto">
+        <div class="form-grupo">
+          <label for="nombre">Nombre del Producto:</label>
+          <input type="text" id="nombre" required placeholder="Ej: Alimento Perro Adulto 3kg" />
         </div>
-      </div>
-    </section>
 
-    <!-- pantalla de la listas de productos -->
-    <section id="pantalla-productos" class="oculta">
-      <h2>Catalogo</h2>
-      <div>Carrito</div>
-      <nav>
-        <button id="btn-filtro-todos">Todos</button>
-        <button id="btn-filtro-perros">Perros</button>
-        <button id="btn-filtro-gatos">Gatos</button>
-      </nav>
-      <div id="lista-productos"></div>
-    </section>
+        <div class="form-grupo">
+          <label for="precio">Precio ($):</label>
+          <input type="number" id="precio" step="0.01" required placeholder="Ej: 4500.50" />
+        </div>
 
-    <!-- pantalla del carrito de compras -->
-    <section id="pantalla-carrito" class="oculta">
-      <h2>Tu Carrito</h2>
-      <div id="lista-carrito-detalle"></div>
-      <h3>Total: $<span id="total-carrito">0</span></h3>
-      <button id="btn-finalizar-compra">Finalizar Compra</button>
-      <button id="btn-seguir-comprando">Seguir Comprando</button>
-    </section>
+        <div class="form-grupo">
+          <label for="tipo">Categoría / Tipo:</label>
+          <select id="tipo" required>
+            <option value="">Seleccione una opción</option>
+            <option value="alimento">Alimento</option>
+            <option value="juguete">Juguete</option>
+            <option value="accesorio">Accesorio</option>
+            <option value="salud">Salud / Farmacia</option>
+          </select>
+        </div>
 
-    <section id="pantalla-ticket" class="oculta">
-      <div id="ticket-contenido">
-        <!-- Se llena dinámicamente -->
-      </div>
-    </section>
+        <div class="form-grupo">
+          <label for="imagen">Ruta de la Imagen:</label>
+          <input type="text" id="imagen" placeholder="Ej: /img/alimento-perro.png" />
+        </div>
 
-    <section id="seccion-admin" class="oculta">
-      <div class="admin-container">
-        <h2>Panel de Administración - Cargar Producto</h2>
+        <button type="submit" class="btn-guardar">Guardar Producto</button>
+      </form>
+    </div>
+  </section>
+  <script type="module" src="./js/main.js" defer></script>
+</body>
 
-        <form id="form-producto">
-          <div class="form-grupo">
-            <label for="nombre">Nombre del Producto:</label>
-            <input
-              type="text"
-              id="nombre"
-              required
-              placeholder="Ej: Alimento Perro Adulto 3kg"
-            />
-          </div>
-
-          <div class="form-grupo">
-            <label for="precio">Precio ($):</label>
-            <input
-              type="number"
-              id="precio"
-              step="0.01"
-              required
-              placeholder="Ej: 4500.50"
-            />
-          </div>
-
-          <div class="form-grupo">
-            <label for="tipo">Categoría / Tipo:</label>
-            <select id="tipo" required>
-              <option value="">Seleccione una opción</option>
-              <option value="alimento">Alimento</option>
-              <option value="juguete">Juguete</option>
-              <option value="accesorio">Accesorio</option>
-              <option value="salud">Salud / Farmacia</option>
-            </select>
-          </div>
-
-          <div class="form-grupo">
-            <label for="imagen">Ruta de la Imagen:</label>
-            <input
-              type="text"
-              id="imagen"
-              placeholder="Ej: /img/alimento-perro.png"
-            />
-          </div>
-
-          <button type="submit" class="btn-guardar">Guardar Producto</button>
-        </form>
-      </div>
-    </section>
-    <script type="module" src="./js/main.js" defer></script>
-  </body>
 </html>

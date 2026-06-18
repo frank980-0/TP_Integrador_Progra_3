@@ -16,6 +16,7 @@ function inicializarSecciones() {
   secciones.carrito = document.getElementById("pantalla-carrito");
   secciones.ticket = document.getElementById("pantalla-ticket");
   secciones.admin = document.getElementById("seccion-admin");
+  secciones.loginAdmin = document.getElementById('pantalla-login-admin');
 
   // Validar que todo cargó correctamente
   Object.entries(secciones).forEach(([clave, valor]) => {

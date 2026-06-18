@@ -11,3 +11,15 @@ export function iniciarCompra() {
   mostrarPantalla("catalogo");
   renderizarProductos(estado.productos); // Carga los productos
 }
+
+
+// --- NAVEGACIÓN DEL ADMINISTRADOR ---
+
+export function irALoginAdmin() {
+  mostrarPantalla("loginAdmin");
+}
+
+export function volverAlInicioDesdeLogin() {
+  mostrarPantalla("bienvenida");
+}
+
