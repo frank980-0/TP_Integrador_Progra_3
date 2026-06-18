@@ -7,12 +7,12 @@ const PUERTO = 3000;
 
 //  MIDDLEWARES
 app.use(cors());
-app.use(express.json()); // Para que Express entienda los JSON que manda el fetch
+app.use(express.json());
 
-// --- TUS RUTAS ---
+// rutas
 app.use("/api/producto", productoRoutes);
 
-// --- ARRANQUE DEL SERVIDOR ---
+// arranque del servidor
 const iniciarServidor = async () => {
   try {
     await conectarDB();
