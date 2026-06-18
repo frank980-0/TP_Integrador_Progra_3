@@ -16,7 +16,7 @@ export function inicializarAdmin() {
 
     try {
       // Hacemos la petición POST al servidor Express
-      const respuesta = await fetch("/api/producto", {
+      const respuesta = await fetch("http://localhost:3000/api/producto", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

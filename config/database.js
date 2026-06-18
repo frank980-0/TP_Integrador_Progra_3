@@ -1,10 +1,11 @@
 const { Sequelize } = require("sequelize");
 const path = require("path");
 
-// Configuración específica para SQLite
+// Forzamos explícitamente a Sequelize a usar 'sqlite3' clásico
 const sequelize = new Sequelize({
-  dialect: "better-sqlite3",
-  storage: path.join(__dirname, "..", "data", "petshop.db"), // crea el archivo de la base de datos
+  dialect: "sqlite",
+  storage: path.join(__dirname, "../petshop.db"),
+  dialectModule: require("sqlite3"), //
   logging: false,
 });
 
@@ -15,6 +16,7 @@ const conectarDB = async () => {
     console.log("Conexión a SQLite establecida correctamente.");
   } catch (error) {
     console.error("Error al conectar con SQLite:", error);
+    process.exit(1);
   }
 };
 
