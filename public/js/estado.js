@@ -1,5 +1,3 @@
-// import { baseDeDatosProductos } from "../../config/database.js";
-
 export let estado = {
   nombreCliente: "",
   carrito: [], // Array de objetos: { id, nombre, variante, precio, cantidad }

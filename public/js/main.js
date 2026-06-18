@@ -5,10 +5,8 @@ import { generarTicket } from "./pantallaTicket.js";
 import { estado, inicializarSecciones, secciones } from "./estado.js";
 import { mostrarPantalla } from "./controladorPantallas.js";
 import { inicializarAdmin } from "./admin.js";
+import { cargarProductosDesdeBD } from "./productos.js";
 
-//--- PANTALLA DE INICIO ---
-
-// Esperar a que el DOM y las secciones estén listos
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
     inicializarSecciones();
@@ -19,8 +17,16 @@ if (document.readyState === "loading") {
   iniciarApp();
 }
 
-function iniciarApp() {
+// hacemos async para poder cargar la db
+async function iniciarApp() {
   console.log("Secciones cargadas:", secciones);
+
+  await cargarProductosDesdeBD();
+
+  // Si tenés una función para dibujar las tarjetas en el catálogo, la ejecutás acá:
+  // renderizarProductos();
+
+  // --- BOTONES DE NAVEGACIÓN ---
 
   // Botón para entrar desde el inicio
   const btnInicio = document.querySelector("#btn-entrar");
@@ -28,9 +34,10 @@ function iniciarApp() {
     btnInicio.addEventListener("click", () => iniciarCompra());
   }
 
+  // Panel de Administración (Formulario)
   inicializarAdmin();
 
-  // 2. Le damos funcionalidad al botón del menú para abrir la pantalla de admin
+  // Botón del menú de navegación para abrir la sección de admin
   const btnNavAdmin = document.querySelector("#btn-admin");
   if (btnNavAdmin) {
     btnNavAdmin.addEventListener("click", () => mostrarPantalla("admin"));
