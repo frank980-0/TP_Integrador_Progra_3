@@ -3,7 +3,7 @@ const path = require("path");
 
 // Configuración específica para SQLite
 const sequelize = new Sequelize({
-  dialect: "better-sqlite3",
+  dialect: "sqlite",
   storage: path.join(__dirname, "..", "data", "petshop.db"), // crea el archivo de la base de datos
   logging: false,
 });
