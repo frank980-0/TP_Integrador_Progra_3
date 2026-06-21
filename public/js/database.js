@@ -15,5 +15,5 @@ app.get('/src/api/producto', async (req, res) => {
 
 
 
-const rutasAdmin = require('./src/api/admin');
-app.use('/api/admin', rutasAdmin);
+const rutasAdmin = require('./src/controllers/admin');
+app.use('/api/controllers/admin', rutasAdmin);

@@ -1,3 +1,5 @@
+import { mostrarPantalla } from './controladorPantallas.js';
+
 export function inicializarAdmin() {
   const formulario = document.getElementById("form-producto");
 
@@ -66,6 +68,8 @@ export function inicializarLoginAdmin() {
         alert('¡Bienvenido Administrador!');
         // Importante: Acá le decimos que cambie al panel de carga de productos
         // Asegurate de importar mostrarPantalla arriba si la vas a usar acá
+       
+        mostrarPantalla('loginAdmin');
         document.getElementById('pantalla-login-admin').classList.add('oculta');
         document.getElementById('seccion-admin').classList.remove('oculta'); 
       } else {

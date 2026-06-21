@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 // Importamos el modelo de Admin respetando tu estructura de carpetas
-const Admin = require('../database/models/admin'); 
+const Admin = require('../models/admin'); 
 
 // --------------------------------------------------------
 // 1. ENDPOINT PARA CREAR UN ADMIN (Cumple consigna de encriptación)
