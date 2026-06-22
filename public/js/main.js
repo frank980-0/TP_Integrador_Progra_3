@@ -5,7 +5,7 @@ import { generarTicket } from "./pantallaTicket.js";
 import { estado, inicializarSecciones, secciones } from "./estado.js";
 import { mostrarPantalla } from "./controladorPantallas.js";
 import { inicializarAdmin } from "./admin.js";
-import { cargarProductosDesdeBD } from "./productos.js";
+import { cargarProductosDesdeBD } from "./producto.js";
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
