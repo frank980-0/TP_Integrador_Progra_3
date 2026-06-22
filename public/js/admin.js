@@ -64,20 +64,25 @@ export function inicializarLoginAdmin() {
       });
       const data = await respuesta.json();
 
-      if (respuesta.ok) {
-        alert('¡Bienvenido Administrador!');
-        // Importante: Acá le decimos que cambie al panel de carga de productos
-        // Asegurate de importar mostrarPantalla arriba si la vas a usar acá
-       
-        mostrarPantalla('loginAdmin');
-        document.getElementById('pantalla-login-admin').classList.add('oculta');
-        document.getElementById('seccion-admin').classList.remove('oculta'); 
-      } else {
-        alert('Error: ' + data.error);
-      }
-    } catch (error) {
-      console.error(error);
+     const cajaNotificacion = document.getElementById('caja-notificacion');
+
+    if (respuesta.ok) {
+      // Éxito: No mostramos cartel porque lo teletransportamos directo al panel
+      document.getElementById('admin-password').value = '';
+      mostrarPantalla('admin'); // ACÁ usamos el nombre de pantalla correcto
+    } else {
+      // Error de login (ej: contraseña mal): cartel rojo
+      cajaNotificacion.textContent = data.error || 'Correo o contraseña incorrectos.';
+      cajaNotificacion.className = 'notificacion notificacion-error';
+      
+      // Que desaparezca solo
+      setTimeout(() => {
+          cajaNotificacion.className = 'oculto';
+      }, 4000);
     }
+  } catch (error) {
+    console.error(error);
+  }
   });
 
   // Lógica para Crear Administrador
@@ -93,13 +98,26 @@ export function inicializarLoginAdmin() {
       });
       const data = await respuesta.json();
 
-      if (respuesta.ok) {
-        alert('¡Cuenta creada con éxito! Ahora podés ingresar.');
-      } else {
-        alert('Error: ' + data.error);
-      }
-    } catch (error) {
-      console.error(error);
+      const cajaNotificacion = document.getElementById('caja-notificacion');
+
+    if (respuesta.ok) {
+      // Éxito: cartel verde
+      cajaNotificacion.textContent = '¡Cuenta creada con éxito! Ahora podés ingresar.';
+      cajaNotificacion.className = 'notificacion notificacion-exito';
+      document.getElementById('admin-password').value = ''; 
+    } else {
+      // Error: cartel rojo
+      cajaNotificacion.textContent = data.error || 'Error al crear la cuenta.';
+      cajaNotificacion.className = 'notificacion notificacion-error';
     }
+
+    // Que desaparezca solo a los 4 segundos
+    setTimeout(() => {
+        cajaNotificacion.className = 'oculto';
+    }, 4000);
+
+  } catch (error) {
+    console.error(error);
+  }
   });
 }
