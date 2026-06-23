@@ -1,6 +1,4 @@
-import { estado } from "./estado.js";
-
-export function generarTicket() {
+function generarTicket() {
   const fecha = new Date().toLocaleString();
   const total = estado.carrito.reduce(
     (sum, item) => sum + item.precio * item.cantidad,

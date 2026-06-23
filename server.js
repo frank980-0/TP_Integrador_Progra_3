@@ -11,6 +11,7 @@ app.use(express.json());
 
 // rutas
 app.use("/api/producto", productoRoutes);
+app.use("/api/admin", adminRoutes);
 
 // arranque del servidor
 const iniciarServidor = async () => {
