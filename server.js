@@ -1,10 +1,11 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const { conectarDB, sequelize } = require("./config/database");
 const productoRoutes = require("./src/api/productoRoutes");
 const adminRoutes = require("./src/api/adminRoutes");
 const app = express();
-const PUERTO = 3000;
+const PUERTO = process.env.PORT || 3000;
 
 //  MIDDLEWARES
 app.use(cors());

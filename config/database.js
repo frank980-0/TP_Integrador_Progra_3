@@ -1,14 +1,16 @@
 const { Sequelize } = require("sequelize");
 const path = require("path");
+let sequelize;
 
-// Forzamos explícitamente a Sequelize a usar 'sqlite3' clásico
-const sequelize = new Sequelize({
-  dialect: "sqlite",
-  storage: path.join(__dirname, "../data/petshop.db"),
-  dialectModule: require("sqlite3"),
-  logging: false,
-});
-
+// Verificamos qué dialecto estamos usando en el .env
+if (process.env.DB_DIALECT === "sqlite") {
+  // Configuración para SQLite
+  sequelize = new Sequelize({
+    dialect: process.env.DB_DIALECT || "sqlite",
+    storage: process.env.DB_STORAGE || "./data/petshop.db", // Lee la ruta del .env
+    logging: false,
+  });
+}
 // Solo verificamos la conexión, NO sincronizamos aquí
 const conectarDB = async () => {
   try {

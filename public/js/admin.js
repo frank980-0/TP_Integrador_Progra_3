@@ -1,8 +1,8 @@
 import { mostrarPantalla } from "./controladorPantallas.js";
-
+import { API_BASE_URL } from "./config.js";
 export function inicializarAdmin() {
   const formulario = document.getElementById("form-producto");
-
+  const btnInicio = document.getElementById("btn-volver-inicio");
   if (!formulario) return;
 
   formulario.addEventListener("submit", async (e) => {
@@ -16,7 +16,7 @@ export function inicializarAdmin() {
     };
 
     try {
-      const respuesta = await fetch("http://localhost:3000/api/producto", {
+      const respuesta = await fetch(`${API_BASE_URL}/producto`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -30,13 +30,19 @@ export function inicializarAdmin() {
         alert("¡Producto guardado con éxito en la base de datos!");
         formulario.reset();
       } else {
-        alert(`Error: ${resultado.mensaje}`);
+        alert(`Error: ${resultado.error}`);
       }
     } catch (error) {
       console.error("Error al enviar los datos:", error);
       alert("No se pudo conectar con el servidor backend.");
     }
   });
+
+  if (btnInicio) {
+    btnInicio.addEventListener("click", () => {
+      mostrarPantalla("bienvenida");
+    });
+  }
 }
 
 // Función para inicializar los botones de la pantalla de LOGIN
@@ -53,7 +59,7 @@ export function inicializarLoginAdmin() {
 
     try {
       // CORRECCIÓN: Agregamos la URL completa del backend de Express
-      const respuesta = await fetch("http://localhost:3000/api/admin/login", {
+      const respuesta = await fetch(`${API_BASE_URL}/admin/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ correo, password }),
@@ -86,14 +92,11 @@ export function inicializarLoginAdmin() {
 
     try {
       // CORRECCIÓN: Agregamos la URL completa del backend de Express
-      const respuesta = await fetch(
-        "http://localhost:3000/api/admin/registro",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ correo, password }),
-        },
-      );
+      const respuesta = await fetch(`${API_BASE_URL}/admin/registro`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ correo, password }),
+      });
       const data = await respuesta.json();
 
       const cajaNotificacion = document.getElementById("caja-notificacion");

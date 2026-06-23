@@ -1,0 +1,240 @@
+/* --- PANTALLAS DE ACCESO (Inicio y Seccion Login Admin) --- */
+#pantalla-inicio,
+#seccion-login-admin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 70px);
+}
+
+.carta-inicio h1,
+.carta-inicio h2 {
+  font-size: 2.2rem;
+  color: floralwhite;
+  margin: 0 0 10px 0;
+  text-align: center;
+  font-weight: 800;
+}
+
+.carta-inicio {
+  background-color: rgb(17, 81, 17);
+  border-radius: 40px;
+  padding: 45px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 10px 25px rgba(17, 81, 17, 0.2);
+}
+
+.carta-inicio p {
+  font-size: 1.2rem;
+  color: rgb(130, 205, 141);
+  text-align: center;
+  margin: 0 0 25px 0;
+}
+
+.carta-inicio input {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  border: 2px solid transparent;
+  margin-top: 15px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.carta-inicio input:focus {
+  border-color: rgb(221, 139, 32);
+}
+
+.botones-inicio {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.botones-inicio button {
+  background-color: rgb(221, 139, 32);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 25px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.botones-inicio button:hover {
+  background-color: rgb(167, 97, 6);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* --- CATÁLOGO DE PRODUCTOS (Header y Filtros) --- */
+#pantalla-productos h2 {
+  text-align: center;
+  color: rgb(17, 81, 17);
+  font-size: 2.2rem;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.filtros-categoria {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.btn-filtro {
+  background-color: #ffffff;
+  border: 2px solid rgb(17, 81, 17);
+  color: rgb(17, 81, 17);
+  padding: 8px 20px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-filtro:hover {
+  background-color: rgb(17, 81, 17);
+  color: #ffffff;
+}
+
+/* --- CONTENEDOR DE PRODUCTOS (CSS Grid) --- */
+#lista-productos,
+#contenedor-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Contenedor principal del panel */
+.admin-container {
+  background-color: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 24px;
+  padding: 40px;
+  max-width: 600px;
+  width: 90%;
+  margin: 40px auto;
+  box-shadow: 0 10px 25px rgba(17, 81, 17, 0.05);
+}
+
+/* Título del Panel */
+.admin-container h2 {
+  color: rgb(17, 81, 17);
+  font-size: 1.8rem;
+  font-weight: 800;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #e4e4e7;
+  padding-bottom: 15px;
+}
+
+/* --- FORMULARIO DE ADMIN --- */
+
+/* Estructura del Formulario */
+#form-producto {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Grupos de campos (Labels + Inputs) */
+.form-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Etiquetas */
+.form-grupo label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #27272a;
+}
+
+/* Inputs y Select del Formulario */
+.form-grupo input,
+.form-grupo select {
+  width: 100%;
+  padding: 12px 18px;
+  font-size: 1rem;
+  font-family: inherit;
+  font-weight: 600;
+  border-radius: 14px;
+  border: 2px solid #e4e4e7;
+  background-color: #f4f4f5;
+  color: #18181b;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.form-grupo input::placeholder {
+  color: #a1a1aa;
+}
+
+/* Enfoque de los campos al hacer click */
+.form-grupo input:focus,
+.form-grupo select:focus {
+  border-color: rgb(17, 81, 17);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(17, 81, 17, 0.1);
+}
+
+/* --- BOTONES DEL FORMULARIO --- */
+
+/* Botón Guardar Producto  */
+.btn-guardar {
+  background-color: rgb(221, 139, 32);
+  color: #ffffff;
+  border: none;
+  padding: 14px 24px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: inherit;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+
+.btn-guardar:hover {
+  background-color: rgb(167, 97, 6);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(221, 139, 32, 0.3);
+}
+
+.btn-guardar:active {
+  transform: translateY(0);
+}
+
+/* Botón de Inicio (Estilo secundario/cancelar) */
+#btn-volver-inicio {
+  background-color: transparent;
+  color: #52525b;
+  border: 2px solid #e4e4e7;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: inherit;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#btn-volver-inicio:hover {
+  background-color: #f4f4f5;
+  color: #18181b;
+  border-color: #d4d4d8;
+}
