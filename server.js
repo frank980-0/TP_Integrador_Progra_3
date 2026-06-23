@@ -2,6 +2,9 @@ const express = require("express");
 const { sequelize, conectarDB } = require("./config/database.js");
 const productoRoutes = require("./src/api/productoRoutes.js");
 const adminRoutes = require("./src/controllers/admin.js");
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
+const path = require('path');
 
 const app = express();
 const PUERTO = 3000;
@@ -9,6 +12,8 @@ const PUERTO = 3000;
 //  MIDDLEWARES
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
 // rutas
 app.use("/api/producto", productoRoutes);

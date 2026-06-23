@@ -7,7 +7,7 @@ import { mostrarPantalla } from "./controladorPantallas.js";
 import { inicializarAdmin } from "./admin.js";
 import { inicializarLoginAdmin } from './admin.js';
 import { irALoginAdmin, volverAlInicioDesdeLogin } from './pantallaInicio.js';
-
+import { cargarProductosDesdeBD } from './producto.js';
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
     inicializarSecciones();

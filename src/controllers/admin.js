@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 // Importamos el modelo de Admin respetando tu estructura de carpetas
 const Admin = require('../models/admin'); 
+const jwt = require('jsonwebtoken');
 
 // --------------------------------------------------------
 // 1. ENDPOINT PARA CREAR UN ADMIN (Cumple consigna de encriptación)
@@ -51,6 +52,24 @@ router.post('/login', async (req, res) => {
     if (!passwordValida) {
       return res.status(401).json({ error: 'Usuario o contraseña incorrectos' });
     }
+    // -------------------------------------------------------------
+    // SI LLEGAMOS ACÁ, EL USUARIO ES QUIEN DICE SER
+    // -------------------------------------------------------------
+    
+    // 3. Generamos la "pulsera VIP" (El Token JWT)
+    const token = jwt.sign(
+      { id: adminEncontrado.id, correo: adminEncontrado.correo }, // Datos que guardamos adentro
+      'CLAVE_SECRETA_PETSHOP', // Tu firma digital para que no te falsifiquen el pase
+      { expiresIn: '2h' } // La sesión dura 2 horas
+    );
+
+    // 4. Guardamos el token en una cookie segura del navegador
+    res.cookie('token_admin', token, {
+      httpOnly: true, // Seguridad máxima: el frontend no puede leerla ni robarla
+      secure: false,  // Está en false porque usás HTTP (localhost). En producción va true.
+      sameSite: 'Lax',
+      maxAge: 2 * 60 * 60 * 1000 // 2 horas de vida expresadas en milisegundos
+    });
 
     // Si todo sale bien, enviamos el mensaje de éxito
     res.status(200).json({ mensaje: 'Login exitoso', correo: adminEncontrado.correo });
