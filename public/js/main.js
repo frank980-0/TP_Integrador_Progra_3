@@ -4,9 +4,10 @@ import {} from "./pantallaCarrito.js";
 import { generarTicket } from "./pantallaTicket.js";
 import { estado, inicializarSecciones, secciones } from "./estado.js";
 import { mostrarPantalla } from "./controladorPantallas.js";
-import { inicializarAdmin } from "./admin.js";
+import { inicializarAdmin, inicializarLoginAdmin } from "./admin.js";
 import { cargarProductosDesdeBD } from "./producto.js";
 
+// --- CONTROL DE ARRANQUE ---
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
     inicializarSecciones();
@@ -17,14 +18,15 @@ if (document.readyState === "loading") {
   iniciarApp();
 }
 
-// hacemos async para poder cargar la db
+// Función principal asíncrona
 async function iniciarApp() {
   console.log("Secciones cargadas:", secciones);
 
+  // --- TRÁFICO DE DATOS ---
+  // Traemos los productos desde SQLite antes de montar las pantallas
   await cargarProductosDesdeBD();
 
-  // Si tenés una función para dibujar las tarjetas en el catálogo, la ejecutás acá:
-  // renderizarProductos();
+  renderizarProductos(estado.productos);
 
   // --- BOTONES DE NAVEGACIÓN ---
 
@@ -34,28 +36,42 @@ async function iniciarApp() {
     btnInicio.addEventListener("click", () => iniciarCompra());
   }
 
-  // Panel de Administración (Formulario)
+  // Inicializa el formulario de carga de productos
   inicializarAdmin();
 
-  // Botón del menú de navegación para abrir la sección de admin
+  inicializarLoginAdmin();
+
+  // Botón del menú de navegación para abrir la sección de admin/login
+  const btnIrLogin = document.querySelector("#btn-ir-login");
+  if (btnIrLogin) {
+    btnIrLogin.addEventListener("click", () => {
+      mostrarPantalla("loginAdmin");
+    });
+  }
   const btnNavAdmin = document.querySelector("#btn-admin");
   if (btnNavAdmin) {
-    btnNavAdmin.addEventListener("click", () => mostrarPantalla("admin"));
+    btnNavAdmin.addEventListener("click", () => {
+      mostrarPantalla("loginAdmin");
+    });
   }
+  const btnProductos = document.querySelector("#btn-nav-productos");
+  if (btnProductos) {
+    btnProductos.addEventListener("click", () => {
+      mostrarPantalla("catalogo");
+    });
+  }
+
+  // --- FILTROS (PANTALLA PRODUCTOS) ---
+
+  const btnTodos = document.getElementById("btn-filtro-todos");
+  if (btnTodos)
+    btnTodos.addEventListener("click", () => filtrarCategoria("todos"));
+
+  const btnPerros = document.getElementById("btn-filtro-perros");
+  if (btnPerros)
+    btnPerros.addEventListener("click", () => filtrarCategoria("perros"));
+
+  const btnGatos = document.getElementById("btn-filtro-gatos");
+  if (btnGatos)
+    btnGatos.addEventListener("click", () => filtrarCategoria("gatos"));
 }
-
-// --- PANTALLA PRODUCTOS ---
-// document
-//   .getElementById("btn-filtro-todos")
-//   .addEventListener("click", filtrarCategoria("todos"));
-// document
-//   .getElementById("btn-filtro-perros")
-//   .addEventListener("click", filtrarCategoria("perros"));
-
-// document
-//   .getElementById("btn-filtro-gatos")
-//   .addEventListener("click", filtrarCategoria("gatos"));
-
-// --- PANTALLA CARRITO ---
-
-// --- PANTALLA TICKET ---

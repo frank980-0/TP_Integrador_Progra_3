@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const { conectarDB, sequelize } = require("./config/database");
 const productoRoutes = require("./src/api/productoRoutes");
+const adminRoutes = require("./src/api/adminRoutes");
 const app = express();
 const PUERTO = 3000;
 
