@@ -8,9 +8,6 @@ import { inicializarAdmin } from "./admin.js";
 import { inicializarLoginAdmin } from './admin.js';
 import { irALoginAdmin, volverAlInicioDesdeLogin } from './pantallaInicio.js';
 
-//--- PANTALLA DE INICIO ---
-
-// Esperar a que el DOM y las secciones estén listos
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
     inicializarSecciones();
@@ -21,8 +18,16 @@ if (document.readyState === "loading") {
   iniciarApp();
 }
 
-function iniciarApp() {
+// hacemos async para poder cargar la db
+async function iniciarApp() {
   console.log("Secciones cargadas:", secciones);
+
+  await cargarProductosDesdeBD();
+
+  // Si tenés una función para dibujar las tarjetas en el catálogo, la ejecutás acá:
+  // renderizarProductos();
+
+  // --- BOTONES DE NAVEGACIÓN ---
 
   // Botón para entrar desde el inicio
   const btnInicio = document.querySelector("#btn-entrar");
@@ -30,6 +35,7 @@ function iniciarApp() {
     btnInicio.addEventListener("click", () => iniciarCompra());
   }
 
+  // Panel de Administración (Formulario)
   inicializarAdmin();
 
   // Conectamos el botón naranja "Administrador" de la pantalla de inicio

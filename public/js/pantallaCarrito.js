@@ -17,13 +17,13 @@ export function agregarAlCarrito(id, nombre, variante, precio) {
   alert("Producto agregado");
 }
 
-export function eliminarProductoDelCarrito(index) {
+function eliminarProductoDelCarrito(index) {
   estado.carrito.splice(index, 1); // Eliminar por índice
   renderizarCarrito();
   actualizarContador();
 }
 
-export function cambiarCantidad(index, delta) {
+function cambiarCantidad(index, delta) {
   const item = estado.carrito[index];
   item.cantidad += delta;
 
@@ -34,7 +34,7 @@ export function cambiarCantidad(index, delta) {
   }
 }
 
-export function actualizarContador() {
+function actualizarContador() {
   const totalItems = estado.carrito.reduce(
     (sum, item) => sum + item.cantidad,
     0,
@@ -43,12 +43,12 @@ export function actualizarContador() {
 }
 
 // --- 4. VISTAS DEL CARRITO Y TICKET ---
-export function irAlCarrito() {
+function irAlCarrito() {
   renderizarCarrito();
   mostrarPantalla("pantalla-carrito");
 }
 
-export function renderizarCarrito() {
+function renderizarCarrito() {
   const contenedor = document.getElementById("lista-carrito-detalle");
   contenedor.innerHTML = "";
   let total = 0;
@@ -73,7 +73,7 @@ export function renderizarCarrito() {
   document.getElementById("total-carrito").innerText = total;
 }
 
-export function finalizarCompra() {
+function finalizarCompra() {
   if (estado.carrito.length === 0) return alert("El carrito está vacío");
 
   generarTicket();

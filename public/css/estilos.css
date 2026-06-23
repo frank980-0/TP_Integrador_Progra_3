@@ -1,16 +1,22 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght=400;500;600;700;800;900&display=swap");
+
+/* --- CONFIGURACIÓN GLOBAL --- */
+* {
+  box-sizing: border-box;
+}
 
 body {
   background-color: floralwhite;
-  box-sizing: border-box;
   padding: 0;
   margin: 0;
   font-family: "Nunito", Arial, Helvetica, sans-serif;
 }
+
 .oculta {
   display: none !important;
 }
-/* pantalla de inicio de patitas */
+
+/* --- PANTALLA DE INICIO --- */
 #pantalla-inicio {
   display: flex;
   flex-direction: column;
@@ -18,51 +24,202 @@ body {
   justify-content: center;
   height: 100vh;
 }
+
 #pantalla-inicio h1 {
   font-size: 3rem;
   color: floralwhite;
   margin-bottom: 20px;
 }
+
 .carta-inicio {
   background-color: rgb(17, 81, 17);
-  border-radius: 60px;
-  padding: 70px;
-  max-width: 70%;
-  max-height: 150%;
+  border-radius: 40px;
+  padding: 50px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 10px 25px rgba(17, 81, 17, 0.2);
 }
+
 .carta-inicio p {
   font-size: 1.5rem;
   color: rgb(130, 205, 141);
   text-align: center;
+  margin: 0 0 20px 0;
 }
+
 .carta-inicio input {
   width: 100%;
-  padding: 10px;
-  font-size: 1.2rem;
+  padding: 12px 20px;
+  font-size: 1.1rem;
   border-radius: 30px;
-  border: none;
-  margin-top: 20px;
+  border: 2px solid transparent;
+  margin-top: 10px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.carta-inicio input:focus {
+  border-color: rgb(221, 139, 32);
 }
 
 .botones-inicio {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 20px;
 }
+
 .botones-inicio button {
   background-color: rgb(221, 139, 32);
   color: white;
   border: none;
-  padding: 15px 30px;
-  font-size: 1.2rem;
+  padding: 12px 28px;
+  font-size: 1.1rem;
   border-radius: 30px;
   cursor: pointer;
-  margin-top: 50px;
+  margin-top: 30px;
+  font-weight: 700;
   transition: all 0.3s ease;
 }
+
 .botones-inicio button:hover {
   background-color: rgb(167, 97, 6);
-  transform: translateY(-4px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* --- CONTENEDOR DE PRODUCTOS (CSS Grid) --- */
+#lista-productos,
+#contenedor-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- LA TARJETA DE PRODUCTO --- */
+.tarjeta-producto {
+  background-color: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease;
+}
+
+.tarjeta-producto:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 20px rgba(17, 81, 17, 0.15);
+}
+
+/* --- TAMAÑO DE LA IMAGEN CORREGIDO --- */
+.producto-imagen-wrapper {
+  width: 100%;
+  height: 160px;
+  background-color: #f4f4f5;
+  position: relative;
+  overflow: hidden;
+}
+
+.producto-imagen-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.tarjeta-producto:hover .producto-imagen-wrapper img {
+  transform: scale(1.04);
+}
+
+/* Etiqueta de Categoría  */
+.producto-badge {
+  position: absolute;
+  top: 130px;
+  right: 12px;
+  background-color: rgb(130, 205, 141);
+  color: rgb(17, 81, 17);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* --- CUERPO DE TEXTO --- */
+.producto-info {
+  padding: 18px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.producto-titulo {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgb(17, 81, 17);
+  margin: 0 0 4px 0;
+  overflow: hidden;
+}
+
+.producto-variante {
+  font-size: 0.9rem;
+  color: #71717a;
+  margin: 0 0 12px 0;
+}
+
+.producto-precio {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: rgb(17, 81, 17);
+  margin: 0;
+}
+
+/* --- BOTÓN AGREGAR AL CARRITO --- */
+.btn-agregar-carrito {
+  margin-top: 16px;
+  width: 100%;
+  background-color: rgb(221, 139, 32);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-agregar-carrito:hover {
+  background-color: rgb(167, 97, 6);
+}
+
+.btn-agregar-carrito:active {
+  transform: scale(0.98);
+}
+
+.btn-agregar-carrito svg {
+  width: 18px;
+  height: 18px;
+}
+
+.texto-vacio {
+  text-align: center;
+  color: #71717a;
+  grid-column: 1 / -1;
+  padding: 40px 0;
+  font-size: 1.2rem;
 }
 
 

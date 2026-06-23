@@ -105,11 +105,56 @@
           <input type="text" id="imagen" placeholder="Ej: /img/alimento-perro.png" />
         </div>
 
-        <button type="submit" class="btn-guardar">Guardar Producto</button>
-      </form>
-    </div>
-  </section>
-  <script type="module" src="./js/main.js" defer></script>
-</body>
+    <section id="seccion-admin" class="oculta">
+      <div class="admin-container">
+        <h2>Panel de Administración - Cargar Producto</h2>
 
+        <form id="form-producto">
+          <div class="form-grupo">
+            <label for="nombre">Nombre del Producto:</label>
+            <input
+              type="text"
+              id="nombre"
+              required
+              placeholder="Ej: Alimento Perro Adulto 3kg"
+            />
+          </div>
+
+          <div class="form-grupo">
+            <label for="precio">Precio ($):</label>
+            <input
+              type="number"
+              id="precio"
+              step="0.01"
+              required
+              placeholder="Ej: 4500.50"
+            />
+          </div>
+
+          <div class="form-grupo">
+            <label for="tipo">Categoría / Tipo:</label>
+            <select id="tipo" required>
+              <option value="">Seleccione una opción</option>
+              <option value="alimento">Alimento</option>
+              <option value="juguete">Juguete</option>
+              <option value="accesorio">Accesorio</option>
+              <option value="salud">Salud / Farmacia</option>
+            </select>
+          </div>
+
+          <div class="form-grupo">
+            <label for="imagen">Ruta de la Imagen:</label>
+            <input
+              type="text"
+              id="imagen"
+              placeholder="Ej: /img/alimento-perro.png"
+            />
+          </div>
+
+          <button type="submit" class="btn-guardar">Guardar Producto</button>
+        </form>
+      </div>
+    </section>
+    <script type="module" src="./js/main.js" defer></script>
+  </body>
 </html>
