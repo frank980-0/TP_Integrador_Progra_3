@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 const Admin = require("../models/admin");
-
+const jwt = require("jsonwebtoken");
 // 1. CONTROLADOR PARA REGISTRO
 const registrarAdmin = async (req, res) => {
   try {
@@ -50,6 +50,21 @@ const loginAdmin = async (req, res) => {
         .json({ error: "Usuario o contraseña incorrectos" });
     }
 
+    // Token JWT
+    const token = jwt.sign(
+      { id: adminEncontrado.id, correo: adminEncontrado.correo },
+      "CLAVE_SECRETA_PETSHOP",
+      { expiresIn: "1h" },
+    );
+
+    // Guardamos el token en una cookie segura del navegador
+    res.cookie("token_admin", token, {
+      httpOnly: true,
+      secure: false, // en produccion es true
+      sameSite: "Lax",
+      maxAge: 2 * 60 * 60 * 1000,
+    });
+
     res
       .status(200)
       .json({ mensaje: "Login exitoso", correo: adminEncontrado.correo });
@@ -59,7 +74,6 @@ const loginAdmin = async (req, res) => {
   }
 };
 
-// Exportamos ambos métodos de forma limpia
 module.exports = {
   registrarAdmin,
   loginAdmin,

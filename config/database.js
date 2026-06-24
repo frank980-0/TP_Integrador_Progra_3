@@ -11,7 +11,7 @@ if (process.env.DB_DIALECT === "sqlite") {
     logging: false,
   });
 }
-// Solo verificamos la conexión, NO sincronizamos aquí
+// Solo verificamos la conexión
 const conectarDB = async () => {
   try {
     await sequelize.authenticate();
