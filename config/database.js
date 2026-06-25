@@ -1,30 +1,25 @@
-export const baseDeDatosProductos = [
-  {
-    id: 1,
-    nombre: "Croquetas Premium",
-    variantes: "Perro Adulto",
-    precio: 2500,
-    tipo: "perros",
-  },
-  {
-    id: 2,
-    nombre: "Juguete Mordedor",
-    variantes: "Hueso",
-    precio: 500,
-    tipo: "perros",
-  },
-  {
-    id: 3,
-    nombre: "Correa Retráctil",
-    variantes: "5m",
-    precio: 1200,
-    tipo: "gatos",
-  },
-  {
-    id: 4,
-    nombre: "Arena Sanitaria",
-    variantes: "Lavanda",
-    precio: 900,
-    tipo: "gatos",
-  },
-];
+const { Sequelize } = require("sequelize");
+const path = require("path");
+let sequelize;
+
+// Verificamos qué dialecto estamos usando en el .env
+if (process.env.DB_DIALECT === "sqlite") {
+  // Configuración para SQLite
+  sequelize = new Sequelize({
+    dialect: process.env.DB_DIALECT || "sqlite",
+    storage: process.env.DB_STORAGE || "./data/petshop.db", // Lee la ruta del .env
+    logging: false,
+  });
+}
+// Solo verificamos la conexión
+const conectarDB = async () => {
+  try {
+    await sequelize.authenticate();
+    console.log("Conexión a SQLite establecida correctamente.");
+  } catch (error) {
+    console.error("Error al conectar con SQLite:", error);
+    process.exit(1);
+  }
+};
+
+module.exports = { sequelize, conectarDB };

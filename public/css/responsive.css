@@ -1,0 +1,64 @@
+/* --- CONFIGURACIÓN RESPONSIVA --- */
+
+/*  (Max-width: 480px) */
+@media (max-width: 480px) {
+  .carta-inicio {
+    padding: 24px;
+  }
+
+  .admin-container {
+    padding: 20px;
+  }
+
+  .carta-inicio h1,
+  .carta-inicio h2,
+  .admin-container h2 {
+    font-size: 1.6rem;
+  }
+
+  .botones-inicio {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .botones-inicio button,
+  .botonera-formulario button {
+    width: 100%;
+  }
+}
+
+/* TABLETS Y CELUS MEDIANOS (Max-width: 768px) */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 16px;
+    height: auto;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .nav-menu {
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .filtros-categoria {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* Ajustamos el espacio de las tarjetas de productos */
+  #lista-productos,
+  #contenedor-productos {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+    padding: 16px;
+  }
+}
+
+/* PANTALLAS GRANDES / ESCRITORIO (Min-width: 1024px) */
+@media (min-width: 1024px) {
+  #lista-productos {
+    max-width: 1400px;
+  }
+}

@@ -1,5 +1,5 @@
 node_modules/
-package-lock.json
 .env
 .history
-data
+data/
+# sql lite no es escalable y no es segura

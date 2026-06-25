@@ -1,14 +1,11 @@
-import { estado } from "./estado.js";
-
-// --- 3. GESTIÓN DEL CARRITO ---
-export function agregarAlCarrito(id, nombre, variante, precio) {
+function agregarAlCarrito(id, nombre, variante, precio) {
   // Buscar si ya existe ese item exacto en el carrito
   const itemExistente = estado.carrito.find(
     (item) => item.id === id && item.variante === variante,
   );
 
   if (itemExistente) {
-    itemExistente.cantidad++; // Sumar cantidad si ya existe
+    itemExistente.cantidad++;
   } else {
     // Crear nuevo item
     estado.carrito.push({ id, nombre, variante, precio, cantidad: 1 });
@@ -17,14 +14,15 @@ export function agregarAlCarrito(id, nombre, variante, precio) {
   actualizarContador();
   alert("Producto agregado");
 }
+window.agregarAlCarrito = agregarAlCarrito;
 
-export function eliminarProductoDelCarrito(index) {
+function eliminarProductoDelCarrito(index) {
   estado.carrito.splice(index, 1); // Eliminar por índice
   renderizarCarrito();
   actualizarContador();
 }
 
-export function cambiarCantidad(index, delta) {
+function cambiarCantidad(index, delta) {
   const item = estado.carrito[index];
   item.cantidad += delta;
 
@@ -35,7 +33,7 @@ export function cambiarCantidad(index, delta) {
   }
 }
 
-export function actualizarContador() {
+function actualizarContador() {
   const totalItems = estado.carrito.reduce(
     (sum, item) => sum + item.cantidad,
     0,
@@ -43,13 +41,13 @@ export function actualizarContador() {
   document.getElementById("contador-carrito").innerText = totalItems;
 }
 
-// --- 4. VISTAS DEL CARRITO Y TICKET ---
-export function irAlCarrito() {
+//  VISTAS DEL CARRITO Y TICKET
+function irAlCarrito() {
   renderizarCarrito();
   mostrarPantalla("pantalla-carrito");
 }
 
-export function renderizarCarrito() {
+function renderizarCarrito() {
   const contenedor = document.getElementById("lista-carrito-detalle");
   contenedor.innerHTML = "";
   let total = 0;
@@ -75,7 +73,7 @@ export function renderizarCarrito() {
   document.getElementById("total-carrito").innerText = total;
 }
 
-export function finalizarCompra() {
+function finalizarCompra() {
   if (estado.carrito.length === 0) return alert("El carrito está vacío");
 
   generarTicket();
