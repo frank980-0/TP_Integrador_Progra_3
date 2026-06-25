@@ -46,7 +46,6 @@ export function renderizarProductos(lista) {
       </div>
     `;
 
-    // CORRECCIÓN CRÍTICA: Escuchador de eventos nativo en lugar de 'onclick' en el HTML string
     const botonAgregar = card.querySelector(".btn-agregar-carrito");
     botonAgregar.addEventListener("click", () => {
       // Si tenés tu función agregarAlCarrito importada, se ejecuta acá limpiamente:
@@ -58,8 +57,6 @@ export function renderizarProductos(lista) {
           prod.precio,
         );
       } else {
-        // Opción recomendada: importar la función arriba y llamarla directo:
-        // agregarAlCarrito(prod.id, prod.nombre, prod.variantes, prod.precio);
         console.log(`Producto agregado: ${prod.nombre}`);
       }
     });

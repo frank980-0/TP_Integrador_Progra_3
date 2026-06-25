@@ -1,4 +1,3 @@
-// --- 3. GESTIÓN DEL CARRITO ---
 function agregarAlCarrito(id, nombre, variante, precio) {
   // Buscar si ya existe ese item exacto en el carrito
   const itemExistente = estado.carrito.find(
@@ -6,7 +5,7 @@ function agregarAlCarrito(id, nombre, variante, precio) {
   );
 
   if (itemExistente) {
-    itemExistente.cantidad++; // Sumar cantidad si ya existe
+    itemExistente.cantidad++;
   } else {
     // Crear nuevo item
     estado.carrito.push({ id, nombre, variante, precio, cantidad: 1 });
@@ -15,6 +14,7 @@ function agregarAlCarrito(id, nombre, variante, precio) {
   actualizarContador();
   alert("Producto agregado");
 }
+window.agregarAlCarrito = agregarAlCarrito;
 
 function eliminarProductoDelCarrito(index) {
   estado.carrito.splice(index, 1); // Eliminar por índice
@@ -41,7 +41,7 @@ function actualizarContador() {
   document.getElementById("contador-carrito").innerText = totalItems;
 }
 
-// --- 4. VISTAS DEL CARRITO Y TICKET ---
+//  VISTAS DEL CARRITO Y TICKET
 function irAlCarrito() {
   renderizarCarrito();
   mostrarPantalla("pantalla-carrito");

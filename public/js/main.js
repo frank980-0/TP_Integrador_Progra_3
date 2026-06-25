@@ -74,4 +74,13 @@ async function iniciarApp() {
   const btnGatos = document.getElementById("btn-filtro-gatos");
   if (btnGatos)
     btnGatos.addEventListener("click", () => filtrarCategoria("gatos"));
+
+  // --- CARRITO ---
+  const botonCarritoNavbar = document.querySelector(".nav-carrito-badge");
+
+  if (botonCarritoNavbar) {
+    botonCarritoNavbar.addEventListener("click", () => {
+      mostrarPantalla("carrito");
+    });
+  }
 }
