@@ -1,6 +1,6 @@
 import { iniciarCompra } from "./pantallaInicio.js";
 import { filtrarCategoria, renderizarProductos } from "./pantallaProductos.js";
-import {} from "./pantallaCarrito.js";
+import { irAlCarrito } from "./pantallaCarrito.js";
 import { generarTicket } from "./pantallaTicket.js";
 import { estado, inicializarSecciones, secciones } from "./estado.js";
 import { mostrarPantalla } from "./controladorPantallas.js";
@@ -61,6 +61,12 @@ async function iniciarApp() {
     });
   }
 
+  // --- CARRITO ---
+  const botonCarritoNavbar = document.querySelector("#btn-nav-carrito");
+  if (botonCarritoNavbar) {
+    botonCarritoNavbar.addEventListener("click", () => irAlCarrito());
+  }
+
   // --- FILTROS (PANTALLA PRODUCTOS) ---
 
   const btnTodos = document.getElementById("btn-filtro-todos");
@@ -74,13 +80,4 @@ async function iniciarApp() {
   const btnGatos = document.getElementById("btn-filtro-gatos");
   if (btnGatos)
     btnGatos.addEventListener("click", () => filtrarCategoria("gatos"));
-
-  // --- CARRITO ---
-  const botonCarritoNavbar = document.querySelector(".nav-carrito-badge");
-
-  if (botonCarritoNavbar) {
-    botonCarritoNavbar.addEventListener("click", () => {
-      mostrarPantalla("carrito");
-    });
-  }
 }

@@ -8,6 +8,7 @@ const productoRoutes = require("./src/api/productoRoutes");
 const adminRoutes = require("./src/api/adminRoutes");
 const app = express();
 const PUERTO = process.env.PORT || 3000;
+const pdfRoutes = require("./src/api/pdfRoutes");
 
 //  MIDDLEWARES
 app.use(cors());
@@ -18,6 +19,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // rutas
 app.use("/api/producto", productoRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api", pdfRoutes);
 
 // arranque del servidor
 const iniciarServidor = async () => {

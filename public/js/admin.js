@@ -4,6 +4,7 @@ import { API_BASE_URL } from "./config.js";
 export function inicializarAdmin() {
   const formulario = document.getElementById("form-producto");
   const btnInicio = document.getElementById("btn-volver-inicio");
+
   if (!formulario) return;
 
   formulario.addEventListener("submit", async (e) => {
