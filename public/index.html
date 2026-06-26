@@ -1,150 +1,143 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Patitas</title>
-    <link rel="stylesheet" href="./css/main.css" />
-  </head>
-  <body>
-    <nav class="navbar oculta" id="barra-navegacion">
-      <div class="nav-logo" id="logo-inicio">
-        <span>🐾 Patitas</span>
-      </div>
-      <ul class="nav-menu">
-        <li class="nav-item">
-          <button id="btn-nav-productos">Productos</button>
-        </li>
-        <li class="nav-item"><button id="btn-admin">Administración</button></li>
-      </ul>
-      <button class="nav-carrito-badge" id="btn-nav-carrito">
-        <img src="./img/carrito.svg" alt="Carrito" class="nav-icon" />
-        <span id="contador-carrito">Carrito (0)</span>
-      </button>
-    </nav>
 
-    <section id="pantalla-inicio">
-      <div class="carta-inicio">
-        <h1>Bienvenidos a Patitas</h1>
-        <p>Encontrá lo que tu mascota necesita</p>
-        <input
-          type="text"
-          id="input-nombre"
-          placeholder="Ingresá tu nombre"
-          required
-        />
-        <div class="botones-inicio">
-          <button id="btn-entrar">Comenzar</button>
-          <button id="btn-ir-login">Soy Admin</button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patitas</title>
+  <link rel="stylesheet" href="./css/main.css" />
+</head>
+
+<body>
+  <nav class="navbar oculta" id="barra-navegacion">
+    <div class="nav-logo" id="logo-inicio">
+      <span>🐾 Patitas</span>
+    </div>
+    <ul class="nav-menu">
+      <li class="nav-item">
+        <button id="btn-nav-productos">Productos</button>
+      </li>
+      <li class="nav-item"><button id="btn-admin">Administración</button></li>
+    </ul>
+    <button class="nav-carrito-badge" id="btn-nav-carrito">
+      <img src="./img/carrito.svg" alt="Carrito" class="nav-icon" />
+      <span>Carrito (0)</span>
+    </button>
+  </nav>
+
+  <section id="pantalla-inicio">
+    <div class="carta-inicio">
+      <h1>Bienvenidos a Patitas</h1>
+      <p>Encontrá lo que tu mascota necesita</p>
+      <input type="text" id="input-nombre" placeholder="Ingresá tu nombre" required />
+      <div class="botones-inicio">
+        <button id="btn-entrar">Comenzar</button>
+        <button id="btn-ir-login">Soy Admin</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="pantalla-productos" class="oculta">
+    <div class="catalogo-header">
+      <h2>Catálogo de Productos</h2>
+      <div class="filtros-categoria">
+        <button id="btn-filtro-todos" class="btn-filtro">Todos</button>
+        <button id="btn-filtro-perros" class="btn-filtro">Perros</button>
+        <button id="btn-filtro-gatos" class="btn-filtro">Gatos</button>
+      </div>
+    </div>
+    <div id="lista-productos"></div>
+  </section>
+
+  <section id="pantalla-carrito" class="oculta">
+    <h2>Tu Carrito</h2>
+    <div id="lista-carrito-detalle"></div>
+    <h3>Total: $<span id="total-carrito">0</span></h3>
+    <div class="acciones-carrito">
+      <button id="btn-finalizar-compra">Finalizar Compra</button>
+      <button id="btn-seguir-comprando">Seguir Comprando</button>
+    </div>
+  </section>
+
+  <section id="pantalla-ticket" class="oculta">
+    <div id="ticket-contenido"></div>
+  </section>
+
+  <section id="seccion-login-admin" class="oculta">
+    <div class="carta-inicio">
+      <h2>Ingreso Administración</h2>
+      <p>Iniciá sesión para gestionar el catálogo</p>
+
+      <div id="caja-notificacion" class="oculto"></div>
+
+      <input type="email" id="admin-correo" placeholder="Correo electrónico" required />
+      <input type="password" id="admin-password" placeholder="Contraseña" required />
+
+      <div class="botones-inicio">
+        <button id="btn-login-admin">Ingresar</button>
+        <button id="btn-crear-admin">Registrar</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="seccion-admin" class="oculta">
+    <div class="admin-container">
+      <h2>Panel de Administración - Cargar Producto</h2>
+
+      <form id="form-producto">
+        <div class="form-grupo">
+          <label for="nombre">Nombre del Producto:</label>
+          <input type="text" id="nombre" required placeholder="Ej: Alimento Perro Adulto 3kg" />
         </div>
-      </div>
-    </section>
 
-    <section id="pantalla-productos" class="oculta">
-      <div class="catalogo-header">
-        <h2>Catálogo de Productos</h2>
-        <div class="filtros-categoria">
-          <button id="btn-filtro-todos" class="btn-filtro">Todos</button>
-          <button id="btn-filtro-perros" class="btn-filtro">Perros</button>
-          <button id="btn-filtro-gatos" class="btn-filtro">Gatos</button>
+        <div class="form-grupo">
+          <label for="precio">Precio ($):</label>
+          <input type="number" id="precio" step="0.01" required placeholder="Ej: 4500.50" />
         </div>
-      </div>
-      <div id="lista-productos"></div>
-    </section>
 
-    <section id="pantalla-carrito" class="oculta">
-      <h2>Tu Carrito</h2>
-      <div id="lista-carrito-detalle"></div>
-      <h3>Total: $<span id="total-carrito">0</span></h3>
-      <div class="acciones-carrito">
-        <button id="btn-finalizar-compra">Finalizar Compra</button>
-        <button id="btn-seguir-comprando">Seguir Comprando</button>
-      </div>
-    </section>
-
-    <section id="pantalla-ticket" class="oculta">
-      <div id="ticket-contenido"></div>
-    </section>
-
-    <section id="seccion-login-admin" class="oculta">
-      <div class="carta-inicio">
-        <h2>Ingreso Administración</h2>
-        <p>Iniciá sesión para gestionar el catálogo</p>
-
-        <div id="caja-notificacion" class="oculto"></div>
-
-        <input
-          type="email"
-          id="admin-correo"
-          placeholder="Correo electrónico"
-          required
-        />
-        <input
-          type="password"
-          id="admin-password"
-          placeholder="Contraseña"
-          required
-        />
-
-        <div class="botones-inicio">
-          <button id="btn-login-admin">Ingresar</button>
-          <button id="btn-crear-admin">Registrar</button>
+        <div class="form-grupo">
+          <label for="tipo">Categoría / Tipo:</label>
+          <select id="tipo" required>
+            <option value="">Seleccione una opción</option>
+            <option value="perros">Perros</option>
+            <option value="gatos">Gatos</option>
+            <option value="juguete">Juguete</option>
+            <option value="accesorio">Accesorio</option>
+          </select>
         </div>
+
+        <div class="form-grupo">
+          <label for="imagen">Ruta de la Imagen:</label>
+          <input type="text" id="imagen" placeholder="Ej: https://images.unsplash.com/... o url local" />
+        </div>
+
+        <button type="submit" class="btn-guardar">Guardar Producto</button>
+        <button type="button" id="btn-volver-inicio">Inicio</button>
+      </form>
+      
+      <hr>
+      <div class="contenedor-dashboard">
+        <h2>Productos Registrados</h2>
+        <table id="tabla-dashboard">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="cuerpo-tabla">
+          </tbody>
+        </table>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="seccion-admin" class="oculta">
-      <div class="admin-container">
-        <h2>Panel de Administración - Cargar Producto</h2>
+  </div>
+  </section>
 
-        <form id="form-producto">
-          <div class="form-grupo">
-            <label for="nombre">Nombre del Producto:</label>
-            <input
-              type="text"
-              id="nombre"
-              required
-              placeholder="Ej: Alimento Perro Adulto 3kg"
-            />
-          </div>
+  <script type="module" src="./js/main.js" defer></script>
+</body>
 
-          <div class="form-grupo">
-            <label for="precio">Precio ($):</label>
-            <input
-              type="number"
-              id="precio"
-              step="0.01"
-              required
-              placeholder="Ej: 4500.50"
-            />
-          </div>
-
-          <div class="form-grupo">
-            <label for="tipo">Categoría / Tipo:</label>
-            <select id="tipo" required>
-              <option value="">Seleccione una opción</option>
-              <option value="perros">Perros</option>
-              <option value="gatos">Gatos</option>
-              <option value="juguete">Juguete</option>
-              <option value="accesorio">Accesorio</option>
-            </select>
-          </div>
-
-          <div class="form-grupo">
-            <label for="imagen">Ruta de la Imagen:</label>
-            <input
-              type="text"
-              id="imagen"
-              placeholder="Ej: https://images.unsplash.com/... o url local"
-            />
-          </div>
-
-          <button type="submit" class="btn-guardar">Guardar Producto</button>
-          <button type="button" id="btn-volver-inicio">Inicio</button>
-        </form>
-      </div>
-    </section>
-
-    <script type="module" src="./js/main.js" defer></script>
-  </body>
 </html>
