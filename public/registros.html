@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registros y Estadísticas - PetShop</title>
+  <link rel="stylesheet" href="./css/global.css">
+  <link rel="stylesheet" href="./css/layaut.css"> 
+</head>
+<body>
+
+  <main style="max-width: 900px; margin: 40px auto; padding: 20px; background-color: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 20px;">
+      <h2 style="color: #1a5c32; margin: 0;">Registros y Estadísticas</h2>
+      <a href="index.html" style="text-decoration: none; color: #555; border: 1px solid #ccc; padding: 5px 15px; border-radius: 5px;">⬅ Volver al Panel</a>
+    </div>
+
+    <section style="margin-bottom: 40px;">
+      <h3 style="color: #333; margin-bottom: 15px;">Historial de Inicios de Sesión (LOG)</h3>
+      <table style="width: 100%; border-collapse: collapse; text-align: left;">
+        <thead>
+          <tr style="background-color: #1a5c32; color: white;">
+            <th style="padding: 10px; border: 1px solid #ddd;">Fecha y Hora</th>
+            <th style="padding: 10px; border: 1px solid #ddd;">Administrador</th>
+            <th style="padding: 10px; border: 1px solid #ddd;">IP</th>
+          </tr>
+        </thead>
+        <tbody id="tbody-logs">
+          </tbody>
+      </table>
+    </section>
+
+    </main>
+
+  <script type="module" src="./js/registros.js"></script>
+</body>
+</html>

@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const Admin = require("../models/admin");
 const jwt = require("jsonwebtoken");
+const LogAcceso = require("../models/LogAcceso");
 // 1. CONTROLADOR PARA REGISTRO
 const registrarAdmin = async (req, res) => {
   try {
@@ -64,6 +65,19 @@ const loginAdmin = async (req, res) => {
       sameSite: "Lax",
       maxAge: 2 * 60 * 60 * 1000,
     });
+    
+    // Guardamos el acceso en la tabla de logs
+    const ipUsuario = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'Localhost (127.0.0.1)';
+
+    await LogAcceso.create({
+      admin: adminEncontrado.correo,
+      ip: ipUsuario
+    });
+    /*
+    await LogAcceso.create({
+      admin: adminEncontrado.correo,
+      ip: req.headers['x-forwarded-for'] || req.socket.remoteAddress 
+    });*/
 
     res
       .status(200)
@@ -74,7 +88,26 @@ const loginAdmin = async (req, res) => {
   }
 };
 
+// ==========================================
+// CONTROLADOR PARA OBTENER LOS LOGS
+// ==========================================
+const obtenerLogs = async (req, res) => {
+  try {
+    const logs = await LogAcceso.findAll({
+      // Ordenamos para que el último login aparezca arriba de todo
+      order: [['fecha_hora', 'DESC']] 
+    });
+    
+    res.json(logs);
+  } catch (error) {
+    console.error("Error al obtener los logs:", error);
+    res.status(500).json({ error: "Error al obtener los registros de acceso." });
+  }
+};
+
+
 module.exports = {
   registrarAdmin,
   loginAdmin,
+  obtenerLogs,
 };
