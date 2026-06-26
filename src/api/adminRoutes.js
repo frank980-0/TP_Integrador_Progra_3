@@ -6,4 +6,5 @@ router.post("/registro", adminController.registrarAdmin);
 
 router.post("/login", adminController.loginAdmin);
 
+
 module.exports = router;
