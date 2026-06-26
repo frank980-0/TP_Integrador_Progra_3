@@ -12,7 +12,6 @@ function inicializarSecciones() {
   secciones.bienvenida = document.getElementById("pantalla-inicio");
   secciones.catalogo = document.getElementById("pantalla-productos");
   secciones.carrito = document.getElementById("pantalla-carrito");
-  secciones.ticket = document.getElementById("pantalla-ticket");
   secciones.admin = document.getElementById("seccion-admin");
   secciones.loginAdmin = document.getElementById("seccion-login-admin");
 
