@@ -35,7 +35,11 @@ export async function generarTicket() {
     const respuesta = await fetch("http://localhost:3000/api/generar-pdf", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ html: contenidoHtml }), // Le mandamos el HTML ya armado
+      body: JSON.stringify({ 
+        html: contenidoHtml,
+        totalVenta: total, // Le pasamos la plata total
+        itemsCarrito: estado.carrito // Le pasamos el array de productos
+      }),
     });
 
     if (!respuesta.ok)

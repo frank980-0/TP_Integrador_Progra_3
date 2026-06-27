@@ -2,6 +2,9 @@ const bcrypt = require("bcryptjs");
 const Admin = require("../models/admin");
 const jwt = require("jsonwebtoken");
 const LogAcceso = require("../models/LogAcceso");
+const Producto = require("../models/producto");
+const Venta = require("../models/Venta");
+
 // 1. CONTROLADOR PARA REGISTRO
 const registrarAdmin = async (req, res) => {
   try {
@@ -105,9 +108,50 @@ const obtenerLogs = async (req, res) => {
   }
 };
 
+// ==========================================
+// CONTROLADOR PARA ENVIAR TODAS LAS ESTADÍSTICAS
+// ==========================================
+const obtenerEstadisticas = async (req, res) => {
+  try {
+    // 1. Top 10 productos más vendidos (Ordenados por cantidad_vendida de mayor a menor)
+    const productosMasVendidos = await Producto.findAll({
+      where: { activo: true },
+      order: [['cantidad_vendida', 'DESC']],
+      limit: 10
+    });
+
+    // 2. Top 10 ventas más caras (Ordenadas por el campo total de mayor a menor)
+    const ventasMasCaras = await Venta.findAll({
+      order: [['total', 'DESC']],
+      limit: 10
+    });
+
+    // 3. ESTADÍSTICAS EXTRA (Calculamos dos métricas más de forma directa)
+    // Métrica A: Total de dinero recaudado en la plataforma
+    const totalRecaudado = await Venta.sum('total') || 0;
+
+    // Métrica B: Cantidad total de productos registrados activos en el catálogo
+    const cantidadProductos = await Producto.count({ where: { activo: true } });
+
+    // Mandamos todo empaquetado en un solo objeto de respuesta
+    res.json({
+      productosMasVendidos,
+      ventasMasCaras,
+      extra: {
+        totalRecaudado,
+        cantidadProductos
+      }
+    });
+
+  } catch (error) {
+    console.error("Error al generar estadísticas:", error);
+    res.status(500).json({ error: "Error interno al procesar las estadísticas." });
+  }
+};
 
 module.exports = {
   registrarAdmin,
   loginAdmin,
   obtenerLogs,
+  obtenerEstadisticas,
 };

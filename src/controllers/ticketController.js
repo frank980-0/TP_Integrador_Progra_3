@@ -1,13 +1,38 @@
 const puppeteer = require("puppeteer");
+const Venta = require("../models/Venta");
+const Producto = require("../models/producto");
 
 const descargarTicketPdf = async (req, res) => {
-  const { html } = req.body;
+  const { html, totalVenta, itemsCarrito } = req.body;
 
   if (!html) {
     return res.status(400).send("Falta el contenido HTML");
   }
 
   try {
+    // ============================================================
+    // NUEVO: REGISTRAMOS LA VENTA EN LA BASE DE DATOS
+    // ============================================================
+    if (totalVenta && itemsCarrito) {
+      // Guardamos la venta (Para el top 10 ventas más caras)
+      await Venta.create({
+        total: totalVenta,
+        detalle_productos: JSON.stringify(itemsCarrito)
+      });
+
+      // Actualizamos el contador de cada producto (Para el top 10 más vendidos)
+      for (const item of itemsCarrito) {
+        // Buscamos el producto por ID (asumiendo que item.id existe en tu carrito)
+        const prod = await Producto.findByPk(item.id);
+        if (prod) {
+          prod.cantidad_vendida += item.cantidad;
+          await prod.save();
+        }
+      }
+    }
+    // ============================================================
+
+    // ACÁ SIGUE TU CÓDIGO NORMAL DE PUPPETEER...
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
