@@ -1,102 +1,198 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registros y Estadísticas - PetShop</title>
-    <link rel="stylesheet" href="./css/global.css">
-    <link rel="stylesheet" href="./css/layaut.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registros y Estadísticas - Patitas</title>
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/layaut.css" />
     <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <main
-        style="max-width: 900px; margin: 40px auto; padding: 20px; background-color: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+      style="
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      "
+    >
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 2px solid #eee;
+          padding-bottom: 10px;
+          margin-bottom: 20px;
+        "
+      >
+        <h2 style="color: #1a5c32; margin: 0">Registros y Estadísticas</h2>
+        <a
+          href="index.html"
+          style="
+            text-decoration: none;
+            color: #555;
+            border: 1px solid #ccc;
+            padding: 5px 15px;
+            border-radius: 5px;
+          "
+          >⬅ Volver al Panel</a
+        >
+      </div>
 
-        <div
-            style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 20px;">
-            <h2 style="color: #1a5c32; margin: 0;">Registros y Estadísticas</h2>
-            <a href="index.html"
-                style="text-decoration: none; color: #555; border: 1px solid #ccc; padding: 5px 15px; border-radius: 5px;">⬅
-                Volver al Panel</a>
+      <section style="margin-bottom: 40px">
+        <h3 style="color: #333; margin-bottom: 15px">
+          Historial de Inicios de Sesión (LOG)
+        </h3>
+        <table style="width: 100%; border-collapse: collapse; text-align: left">
+          <thead>
+            <tr style="background-color: #1a5c32; color: white">
+              <th style="padding: 10px; border: 1px solid #ddd">
+                Fecha y Hora
+              </th>
+              <th style="padding: 10px; border: 1px solid #ddd">
+                Administrador
+              </th>
+              <th style="padding: 10px; border: 1px solid #ddd">IP</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-logs"></tbody>
+        </table>
+      </section>
+
+      <section style="margin-bottom: 40px">
+        <h3 style="color: #333; margin-bottom: 15px">Métricas Generales</h3>
+        <div style="display: flex; gap: 20px; justify-content: space-between">
+          <div
+            style="
+              flex: 1;
+              background-color: #f8f9fa;
+              border-left: 5px solid #1a5c32;
+              padding: 20px;
+              border-radius: 5px;
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            "
+          >
+            <p
+              style="margin: 0; color: #666; font-size: 14px; font-weight: bold"
+            >
+              TOTAL RECAUDADO
+            </p>
+            <h2
+              id="metrica-recaudacion"
+              style="margin: 10px 0 0 0; color: #1a5c32"
+            >
+              $0
+            </h2>
+          </div>
+          <div
+            style="
+              flex: 1;
+              background-color: #f8f9fa;
+              border-left: 5px solid #e67e22;
+              padding: 20px;
+              border-radius: 5px;
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            "
+          >
+            <p
+              style="margin: 0; color: #666; font-size: 14px; font-weight: bold"
+            >
+              PRODUCTOS ACTIVOS EN CATÁLOGO
+            </p>
+            <h2
+              id="metrica-productos"
+              style="margin: 10px 0 0 0; color: #e67e22"
+            >
+              0
+            </h2>
+          </div>
         </div>
+      </section>
 
-        <section style="margin-bottom: 40px;">
-            <h3 style="color: #333; margin-bottom: 15px;">Historial de Inicios de Sesión (LOG)</h3>
-            <table style="width: 100%; border-collapse: collapse; text-align: left;">
-                <thead>
-                    <tr style="background-color: #1a5c32; color: white;">
-                        <th style="padding: 10px; border: 1px solid #ddd;">Fecha y Hora</th>
-                        <th style="padding: 10px; border: 1px solid #ddd;">Administrador</th>
-                        <th style="padding: 10px; border: 1px solid #ddd;">IP</th>
-                    </tr>
-                </thead>
-                <tbody id="tbody-logs">
-                </tbody>
-            </table>
+      <div style="display: flex; gap: 20px; margin-bottom: 40px">
+        <section style="flex: 1">
+          <h3 style="color: #333; margin-bottom: 15px">
+            🏆 Top 10 Más Vendidos
+          </h3>
+          <table
+            style="width: 100%; border-collapse: collapse; text-align: left"
+          >
+            <thead>
+              <tr style="background-color: #1a5c32; color: white">
+                <th style="padding: 10px; border: 1px solid #ddd">Producto</th>
+                <th
+                  style="
+                    padding: 10px;
+                    border: 1px solid #ddd;
+                    text-align: center;
+                  "
+                >
+                  Unidades
+                </th>
+              </tr>
+            </thead>
+            <tbody id="tbody-top-productos"></tbody>
+          </table>
         </section>
 
-        <section style="margin-bottom: 40px;">
-            <h3 style="color: #333; margin-bottom: 15px;">Métricas Generales</h3>
-            <div style="display: flex; gap: 20px; justify-content: space-between;">
-                <div
-                    style="flex: 1; background-color: #f8f9fa; border-left: 5px solid #1a5c32; padding: 20px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                    <p style="margin: 0; color: #666; font-size: 14px; font-weight: bold;">TOTAL RECAUDADO</p>
-                    <h2 id="metrica-recaudacion" style="margin: 10px 0 0 0; color: #1a5c32;">$0</h2>
-                </div>
-                <div
-                    style="flex: 1; background-color: #f8f9fa; border-left: 5px solid #e67e22; padding: 20px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-                    <p style="margin: 0; color: #666; font-size: 14px; font-weight: bold;">PRODUCTOS ACTIVOS EN CATÁLOGO
-                    </p>
-                    <h2 id="metrica-productos" style="margin: 10px 0 0 0; color: #e67e22;">0</h2>
-                </div>
-            </div>
+        <section style="flex: 1">
+          <h3 style="color: #333; margin-bottom: 15px">
+            💸 Top 10 Ventas Más Caras
+          </h3>
+          <table
+            style="width: 100%; border-collapse: collapse; text-align: left"
+          >
+            <thead>
+              <tr style="background-color: #1a5c32; color: white">
+                <th style="padding: 10px; border: 1px solid #ddd">Fecha</th>
+                <th
+                  style="
+                    padding: 10px;
+                    border: 1px solid #ddd;
+                    text-align: right;
+                  "
+                >
+                  Total ($)
+                </th>
+              </tr>
+            </thead>
+            <tbody id="tbody-top-ventas"></tbody>
+          </table>
         </section>
+      </div>
 
-        <div style="display: flex; gap: 20px; margin-bottom: 40px;">
-
-            <section style="flex: 1;">
-                <h3 style="color: #333; margin-bottom: 15px;">🏆 Top 10 Más Vendidos</h3>
-                <table style="width: 100%; border-collapse: collapse; text-align: left;">
-                    <thead>
-                        <tr style="background-color: #1a5c32; color: white;">
-                            <th style="padding: 10px; border: 1px solid #ddd;">Producto</th>
-                            <th style="padding: 10px; border: 1px solid #ddd; text-align: center;">Unidades</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody-top-productos">
-                    </tbody>
-                </table>
-            </section>
-
-            <section style="flex: 1;">
-                <h3 style="color: #333; margin-bottom: 15px;">💸 Top 10 Ventas Más Caras</h3>
-                <table style="width: 100%; border-collapse: collapse; text-align: left;">
-                    <thead>
-                        <tr style="background-color: #1a5c32; color: white;">
-                            <th style="padding: 10px; border: 1px solid #ddd;">Fecha</th>
-                            <th style="padding: 10px; border: 1px solid #ddd; text-align: right;">Total ($)</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody-top-ventas">
-                    </tbody>
-                </table>
-            </section>
-
-        </div>
-
-        <div style="text-align: right; margin-top: 30px; padding-top: 20px; border-top: 2px solid #eee;">
-            <button id="btn-exportar-excel"
-                style="background-color: #27ae60; color: white; border: none; padding: 12px 25px; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                📊 Descargar Estadísticas en Excel
-            </button>
-        </div>
-
+      <div
+        style="
+          text-align: right;
+          margin-top: 30px;
+          padding-top: 20px;
+          border-top: 2px solid #eee;
+        "
+      >
+        <button
+          id="btn-exportar-excel"
+          style="
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          "
+        >
+          📊 Descargar Estadísticas en Excel
+        </button>
+      </div>
     </main>
 
     <script type="module" src="./js/registros.js"></script>
-</body>
-
+  </body>
 </html>

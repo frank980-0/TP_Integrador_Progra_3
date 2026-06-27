@@ -16,15 +16,14 @@ export function inicializarAdmin() {
       tipo: document.getElementById("tipo").value,
       imagen: document.getElementById("imagen").value || null,
     };
-    
-    // 2. DECLARAMOS las variables dinámicas (Acá buscamos el ID oculto)
+
     const idEdicion = formulario.dataset.editandoId;
     let metodoFetch = "POST";
     let urlFetch = `${API_BASE_URL}/producto`;
 
     if (idEdicion) {
       metodoFetch = "PUT";
-      urlFetch = `${API_BASE_URL}/producto/${idEdicion}`; 
+      urlFetch = `${API_BASE_URL}/producto/${idEdicion}`;
     }
 
     try {
@@ -34,6 +33,7 @@ export function inicializarAdmin() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(datosProducto),
+        credentials: "include", // ⚡ CORRECCIÓN: Envía la cookie de sesión al backend
       });
 
       const resultado = await respuesta.json();
@@ -41,11 +41,7 @@ export function inicializarAdmin() {
       if (respuesta.ok) {
         alert("¡Producto guardado con éxito en la base de datos!");
         formulario.reset();
-
-        // 2. Le borramos el ID oculto para que vuelva a estar en modo "Alta"
-        delete formulario.dataset.editandoId; 
-        
-        // 3. Volvemos el botón a la normalidad
+        delete formulario.dataset.editandoId;
         document.querySelector(".btn-guardar").textContent = "Guardar Producto";
         cargarTablaDashboard();
       } else {
@@ -65,7 +61,6 @@ export function inicializarAdmin() {
   cargarTablaDashboard();
 }
 
-// Función para inicializar los botones de la pantalla de LOGIN
 export function inicializarLoginAdmin() {
   const btnLogin = document.getElementById("btn-login-admin");
   const btnCrear = document.getElementById("btn-crear-admin");
@@ -78,11 +73,11 @@ export function inicializarLoginAdmin() {
     const password = document.getElementById("admin-password").value;
 
     try {
-      // CORRECCIÓN: Agregamos la URL completa del backend de Express
       const respuesta = await fetch(`${API_BASE_URL}/admin/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ correo, password }),
+        credentials: "include", // ⚡ CORRECCIÓN: Obliga a Chrome a recibir y guardar la cookie que manda Express
       });
       const data = await respuesta.json();
 
@@ -111,7 +106,6 @@ export function inicializarLoginAdmin() {
     const password = document.getElementById("admin-password").value;
 
     try {
-      // CORRECCIÓN: Agregamos la URL completa del backend de Express
       const respuesta = await fetch(`${API_BASE_URL}/admin/registro`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -141,30 +135,22 @@ export function inicializarLoginAdmin() {
   });
 }
 
-
-// Función para traer los productos y pintar la tabla del Dashboard
 async function cargarTablaDashboard() {
   try {
-    // 1. Mandamos al mensajero a buscar la lista de productos al backend
-    // (Asegurate de que esta ruta coincida con tu endpoint GET de productos)
-    const respuesta = await fetch(`${API_BASE_URL}/producto`);
+    const respuesta = await fetch(`${API_BASE_URL}/producto`, {
+      credentials: "include", // ⚡ OPCIONAL PERO RECOMENDABLE: Por si el GET de productos también se protege a futuro
+    });
 
     if (!respuesta.ok) {
-      throw new Error('Error al obtener los productos');
+      throw new Error("Error al obtener los productos");
     }
 
     const productos = await respuesta.json();
+    const cuerpoTabla = document.getElementById("cuerpo-tabla");
+    cuerpoTabla.innerHTML = "";
 
-    // 2. Apuntamos al cuerpo de la tabla en el HTML
-    const cuerpoTabla = document.getElementById('cuerpo-tabla');
-    cuerpoTabla.innerHTML = ''; // Limpiamos la tabla por si tenía datos viejos
-
-    // 3. Iteramos el array de productos y armamos las filas
-    productos.forEach(producto => {
-      const fila = document.createElement('tr');
-
-      // Inyectamos las variables directamente en el HTML de la fila
-      // Y fíjate cómo ya dejamos listos los botones con el ID de cada producto
+    productos.forEach((producto) => {
+      const fila = document.createElement("tr");
       fila.innerHTML = `
         <td>${producto.id}</td>
         <td>${producto.nombre}</td>
@@ -174,55 +160,39 @@ async function cargarTablaDashboard() {
           <button class="btn-eliminar" onclick="borrarProducto(${producto.id})">Eliminar</button>
         </td>
       `;
-
       cuerpoTabla.appendChild(fila);
     });
-
   } catch (error) {
     console.error("Error al cargar el dashboard:", error);
   }
 }
 
-
-// =========================================================
-//  MODIFICACIÓN DE PRODUCTOS DESDE EL DASHBOARD
-// =========================================================
-
-// 1. Función para subir los datos al formulario (Modificar)
 window.prepararEdicion = (id, nombre, precio, tipo, imagen) => {
-  // Llenamos los inputs con los datos de la fila
   document.getElementById("nombre").value = nombre;
   document.getElementById("precio").value = precio;
   document.getElementById("tipo").value = tipo || "";
-  document.getElementById("imagen").value = (imagen && imagen !== 'null') ? imagen : "";
+  document.getElementById("imagen").value =
+    imagen && imagen !== "null" ? imagen : "";
 
-  // Le guardamos el ID de forma oculta al formulario
   const formulario = document.getElementById("form-producto");
   formulario.dataset.editandoId = id;
-
-  // Cambiamos el texto del botón para que quede claro que estamos editando
   document.querySelector(".btn-guardar").textContent = "Actualizar Producto";
-  
-  // Scrolleamos la pantalla hacia arriba suavemente
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
-
-// =========================================================
-//  ELIMINACIÓN DE PRODUCTOS DESDE EL DASHBOARD
-// =========================================================
 window.borrarProducto = async (id) => {
-  if (!confirm("¿Estás seguro de que querés dar de baja este producto?")) return;
-  
+  if (!confirm("¿Estás seguro de que querés dar de baja este producto?"))
+    return;
+
   try {
     const respuesta = await fetch(`${API_BASE_URL}/producto/${id}`, {
-      method: "DELETE"
+      method: "DELETE",
+      credentials: "include", // ⚡ CORRECCIÓN: Para que te deje eliminar productos sin rebotar
     });
 
     if (respuesta.ok) {
       alert("¡Producto eliminado correctamente!");
-      // Llamamos a la función que recarga la grilla
-      cargarTablaDashboard(); 
+      cargarTablaDashboard();
     } else {
       alert("Hubo un error al intentar eliminar.");
     }

@@ -10,14 +10,13 @@ const descargarTicketPdf = async (req, res) => {
   }
 
   try {
-    // ============================================================
     // NUEVO: REGISTRAMOS LA VENTA EN LA BASE DE DATOS
-    // ============================================================
+
     if (totalVenta && itemsCarrito) {
       // Guardamos la venta (Para el top 10 ventas más caras)
       await Venta.create({
         total: totalVenta,
-        detalle_productos: JSON.stringify(itemsCarrito)
+        detalle_productos: JSON.stringify(itemsCarrito),
       });
 
       // Actualizamos el contador de cada producto (Para el top 10 más vendidos)
@@ -32,7 +31,6 @@ const descargarTicketPdf = async (req, res) => {
     }
     // ============================================================
 
-    // ACÁ SIGUE TU CÓDIGO NORMAL DE PUPPETEER...
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 

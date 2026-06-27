@@ -16,7 +16,9 @@ const verificarAdmin = (req, res, next) => {
     req.admin = decodificado;
     next();
   } catch (error) {
-    // Si el token es erroneo o expiro 1 hora
+    // ⚡ DEPURACIÓN DE ORO: Esto te va a decir por qué falló el JWT
+    console.log("❌ ERROR EN VALIDACIÓN DE JWT:", error.message);
+
     return res
       .status(401)
       .json({ error: "Sesión inválida o expirada. Volvé a ingresar." });

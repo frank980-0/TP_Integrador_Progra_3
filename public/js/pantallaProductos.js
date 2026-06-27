@@ -27,24 +27,28 @@ export function renderizarProductos(lista) {
       "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=500&auto=format&fit=crop&q=60";
 
     card.innerHTML = `
-      <div class="producto-imagen-wrapper">
-        <img src="${imagenUrl}" alt="${prod.nombre}" />
-        <span class="producto-badge">${prod.tipo}</span>
-      </div>
+  <div class="producto-imagen-wrapper">
+    <img src="${imagenUrl}" alt="${prod.nombre}" />
+    <span class="producto-badge">${prod.tipo}</span>
+  </div>
 
-      <div class="producto-info">
-        <div>
-          <h3 class="producto-titulo">${prod.nombre}</h3>
-          <p class="producto-variante">Variante: ${prod.variantes || "Única"}</p>
-          <p class="producto-precio">$${prod.precio.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</p>
-        </div>
-        
-        <button class="btn-agregar-carrito">
-          <img src="./img/carrito.svg" alt="Carrito" class="nav-icon" />
-          Agregar al carrito
-        </button>
-      </div>
-    `;
+  <div class="producto-info">
+    <div>
+      <h3 class="producto-titulo">${prod.nombre}</h3>
+      <p class="producto-variante">Variante: ${prod.variantes || "Única"}</p>
+      <p class="producto-precio">$${prod.precio.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</p>
+      
+<a href="detalle.html?id=${prod.id}" style="display: inline-block; margin-top: 12px; font-size: 14px; font-weight: 600; color: #0f7650; text-decoration: none;">
+  Ver detalles del producto →
+</a>
+    </div>
+    
+    <button class="btn-agregar-carrito mt-4">
+      <img src="./img/carrito.svg" alt="Carrito" class="nav-icon" />
+      Agregar al carrito
+    </button>
+  </div>
+`;
 
     const botonAgregar = card.querySelector(".btn-agregar-carrito");
     botonAgregar.addEventListener("click", () => {

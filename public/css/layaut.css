@@ -250,8 +250,6 @@
   font-size: 1.2rem;
 }
 
-
-
 /* ========================================== */
 /* ESTILOS PARA LA TABLA DEL DASHBOARD        */
 /* ========================================== */
@@ -269,7 +267,8 @@
   font-size: 14px;
 }
 
-#tabla-dashboard th, #tabla-dashboard td {
+#tabla-dashboard th,
+#tabla-dashboard td {
   border: 1px solid #ddd; /* Borde gris clarito */
   padding: 10px;
   text-align: left;
@@ -295,5 +294,32 @@
 }
 
 /* Botoncitos de la tabla */
-.btn-modificar { background-color: #e68900; color: white; }
-.btn-eliminar { background-color: #d9534f; color: white; }
+.btn-modificar {
+  background-color: #e68900;
+  color: white;
+}
+.btn-eliminar {
+  background-color: #d9534f;
+  color: white;
+}
+
+/* Estilo base para el botón de volver */
+#btn-volver {
+  background: rgb(17, 81, 17);
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 8px 0;
+  margin-top: 24px;
+  margin-left: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+#btn-volver:hover {
+  transform: translatey(1px);
+}
